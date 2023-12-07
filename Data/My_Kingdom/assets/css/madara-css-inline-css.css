@@ -1,0 +1,304 @@
+.c-blog__heading.style-2 i {
+    background: -webkit-linear-gradient(left, #0f2133 40%,#0f2133);
+    background: -o-linear-gradient(right, #0f2133 40%,#0f2133);
+    background: -moz-linear-gradient(right, #0f2133 40%,#0f2133);
+    background: linear-gradient(to right, #0f2133 40%,#0f2133);
+    ;}
+
+.c-blog__heading.style-2 i:after, .settings-page .nav-tabs-wrap ul.nav-tabs li.active:after {
+    border-left-color: #0f2133 ;
+}
+
+.site-header .main-navigation.style-1, .widget-heading, .widget.background:after, .c-blog__heading.style-2 i, .tab-wrap .c-nav-tabs ul.c-tabs-content li.active a:after, .tab-wrap .c-nav-tabs ul.c-tabs-content li:hover a:after, .tab-wrap .c-nav-tabs ul.c-tabs-content li a:after, .related-heading.font-nav, .c-blog__heading.style-3, .settings-page .nav-tabs-wrap ul.nav-tabs li.active a, .off-canvas {
+    background: -webkit-linear-gradient(left, #0f2133 40%,#0f2133);
+    background: -o-linear-gradient(right, #0f2133 40%,#0f2133);
+    background: -moz-linear-gradient(right, #0f2133 40%,#0f2133);
+    background: linear-gradient(to right, #0f2133 40%,#0f2133);
+    ;}
+
+.widget-heading:after, .related-heading.font-nav:after, .genres_wrap .c-blog__heading.style-3.active:after {
+    border-top-color: #0f2133 ;
+}
+
+body.modal-open .modal .modal-content a:hover, .tab-wrap .c-nav-tabs ul.c-tabs-content li.active a, .tab-wrap .c-nav-tabs ul.c-tabs-content li:hover a, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content:not(.release-year) a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content.release-year a:hover, .c-blog-post .entry-header .entry-meta .post-on:before, .manga-slider .slider__container .slick-dots li.slick-active button:before, .manga-slider .slider__container .slick-dots li button:hover:before, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .count-comment .action_icon a i, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .add-bookmark .action_icon a i, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .count-comment .action_detail a i, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .add-bookmark .action_detail a i, body.manga-page .profile-manga .post-title a, body.manga-page .content-readmore:hover, body.text-ui-light.manga-page .content-readmore:hover, .genres_wrap .genres__collapse .genres ul li a:hover, .genres_wrap .genres__collapse .genres ul li a:hover:before, .c-blog-post .entry-header .entry-meta .post-on .posted-on a:hover, body.search .c-search-header__wrapper #search-advanced .search-advanced-form .form-group.checkbox-group .checkbox label:hover, .site-header .main-navigation .search-navigation .menu-search .open-search-main-menu, .c-btn.c-btn_style-2, body.search .c-search-header__wrapper .search-content .btn-search-adv, body.reading-manga .entry-header .entry-header_wrap .action-icon ul li a, body.reading-manga .c-select-bottom .entry-header_wrap .action-icon ul li a, .widget.c-released .released-item-wrap ul.list-released li a:hover, body.manga-page .profile-manga .post-title h1, .genres_wrap .genres__collapse #genres ul li:hover a, .genres_wrap .genres__collapse #genres ul li:hover a:before, input[type=checkbox]:checked + label:before, input[type=radio]:checked + label:before, .genres_wrap a.btn-genres, .c-breadcrumb .breadcrumb li a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item.mg_genres .summary-content, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .vol a:hover, #hover-infor .item_thumb .post-title a, body.manga-page .version-chap:before, body.manga-page .content-readmore:hover, body.manga-page .chapter-readmore:hover, .icon-load-info, .c-blog-post .entry-header .entry-meta .post-on .c-blog__date .post-category a:hover, .woocommerce ul.products li.product .price, .woocommerce div.entry-summary p.price, .woocommerce div.entry-summary form.cart .variations .label, .woocommerce div.entry-summary form.cart .quantity-text, .widget_product_categories .product-categories li a:hover, .woocommerce ul.products li.product h2:hover, .woocommerce .c-woo-breadcrumb a:hover, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu a:hover, .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li:hover > a, .settings-page .action i.ion-ios-close:hover:before, .settings-page .list-chapter .chapter-item a:hover, .settings-page .tabs-content-wrap .tab-group-item .tab-item .history-content .item-infor .chapter span a, .settings-page .nav-tabs-wrap ul.nav-tabs li:not(.active):hover a, .main-color, .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li.menu-item-has-children.active > a,.woocommerce .woocommerce-ordering:after,.text-ui-light .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter a:hover, body.text-ui-light .settings-page .list-chapter .chapter-item .chapter a:hover,body.search.text-ui-light .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter a:hover {
+    color: #0f2133 ;
+}
+
+.c-blog__heading.style-2 i:after {
+    border-right-color: #0f2133 !important
+}
+
+body.page.text-ui-light .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter a:hover, .text-ui-light .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter a:hover,#hover-infor .item_thumb .post-title a {
+    color: #FFFFFF
+}
+
+.navigation-ajax .load-ajax:not(.show-loading):hover, body.manga-page .page-content-listing.single-page .listing-chapters_wrap > ul.main.version-chap .sub-chap > li:before, .shortcode-manga-chapters .listing-chapters_wrap > ul.main.version-chap .sub-chap > li:before, .c-wg-button-wrap .btn:hover, body.manga-page .page-content-listing.single-page .listing-chapters_wrap ul.main.version-chap .wp-manga-chapter:before, .site-header .search-main-menu form input[type=submit], .form-submit input[type=submit], #comments.comments-area #respond.comment-respond .comment-form .form-submit #submit, .c-btn.c-btn_style-1, .settings-page input[type="submit"], .settings-page .remove-all #delete-bookmark-manga, body.manga-page .page-content-listing.single-page .listing-chapters_wrap > ul.main.version-chap li .wp-manga-chapter:before, .woocommerce ul.products li.product .button, .woocommerce span.onsale, .woocommerce .widget_price_filter .price_slider_amount .button:not(:hover), .woocommerce .woocommerce-pagination .page-numbers li span.current, .woocommerce .woocommerce-pagination .page-numbers li .prev:hover, .woocommerce .woocommerce-pagination .page-numbers li .next:hover, .woocommerce div.entry-summary form.cart .single_add_to_cart_button,.post-password-form input[name="Submit"] {
+    background: #0f2133 ;
+}
+
+.navigation-ajax .load-ajax:not(.show-loading):hover, .popular-slider .slider__container .slider__item .slider__content .slider__content_item .chapter-item .chapter a:hover, body.search .c-search-header__wrapper .search-content .btn-search-adv.collapsed, .c-btn.c-btn_style-2, body.search .c-search-header__wrapper .search-content .btn-search-adv, .genres_wrap a.btn-genres, .wpcf7-validation-errors, .text-ui-light.woocommerce-page input[type="text"]:focus, .text-ui-light.woocommerce-page input[type="email"]:focus, .text-ui-light.woocommerce-page input[type="search"]:focus, .text-ui-light.woocommerce-page input[type="url"]:focus, .text-ui-light.woocommerce-page input[type="password"]:focus, .text-ui-light.woocommerce-page input[type="tel"]:focus, .text-ui-light.woocommerce-page .input-text:focus, .text-ui-light.woocommerce-page input[type="text"]:active, .text-ui-light.woocommerce-page input[type="email"]:active, .text-ui-light.woocommerce-page input[type="search"]:active, .text-ui-light.woocommerce-page input[type="url"]:active, .text-ui-light.woocommerce-page input[type="password"]:active, .text-ui-light.woocommerce-page input[type="tel"]:active, .text-ui-light.woocommerce-page .input-text:active, .text-ui-light.woocommerce-page input[type="text"]:hover, .text-ui-light.woocommerce-page input[type="email"]:hover, .text-ui-light.woocommerce-page input[type="search"]:hover, .text-ui-light.woocommerce-page input[type="url"]:hover, .text-ui-light.woocommerce-page input[type="password"]:hover, .text-ui-light.woocommerce-page input[type="tel"]:hover, .text-ui-light.woocommerce-page .input-text:hover, .text-ui-light.woocommerce-page select.orderby:hover {
+    border-color: #0f2133 ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list > li.menu-item-has-children > ul.sub-menu, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu {
+    border-bottom-color: #0f2133 ;
+}
+
+.widget.widget_tag_cloud .tag-cloud-link:hover, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter:hover, .popular-slider .slider__container .slider__item .slider__content .slider__content_item .chapter-item .chapter a:hover, .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter:hover, .site-footer .top-footer .wrap_social_account ul.social_account__item li a, .site-content .main-col .item-tags ul li a:hover, .popular-slider .slider__container .slick-arrow:hover, .widget.background.widget_tag_cloud .tag-cloud-link:hover, .wp-pagenavi a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter:hover, .go-to-top:hover, .widget.c-popular .widget-view-more, body.search .c-search-header__wrapper .search-content .search-form .search-submit, body.reading-manga .entry-header .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .c-select-bottom .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .entry-header .entry-header_wrap .action-icon ul li:hover a, body.reading-manga .c-select-bottom .entry-header_wrap .action-icon ul li:hover a, .widget.c-released .released-search form [type="submit"], body.manga-page .profile-manga .tab-summary .loader-inner > div, .wpcf7-submit, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce .woocommerce-cart-form .cart button.button, .woocommerce .cart input.button:not(:hover), #adult_modal .modal-footer .btn.btn-primary:not(:hover), body.reading-manga .entry-header .select-pagination .nav-links > * a, body.reading-manga .c-select-bottom .select-pagination .nav-links > * a, .settings-page .list-chapter .chapter-item .chapter:hover, body.modal-open .modal .modal-content .modal-body .login .submit .wp-submit:not(:hover), .settings-page .tabs-content-wrap .my_account_orders a.button.view, .main-bg, #madara-comments.comments-area #respond.comment-respond .comment-form .form-submit #submit, body.search .c-search-header__wrapper .search-content .btn-search-adv {
+    background-color: #0f2133 ;
+}
+
+:root {
+    --madara-main-color: #0f2133
+}
+
+body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter:hover a, .wp-pagenavi a:hover {
+    color: #FFF !important
+}
+
+.item-thumb .quick-chapter-link {
+    background: #0f2133;
+}
+
+.page-content-listing.single-page li.wp-manga-chapter.unread a {
+    color: #0f2133
+}
+
+a:not(.btn-link):hover, .c-breadcrumb .breadcrumb li a:hover, .tab-wrap .c-nav-tabs ul.c-tabs-content li.active a, .tab-wrap .c-nav-tabs ul.c-tabs-content li:hover a, .c-blog-post .entry-header .entry-meta .post-on .posted-on a:hover, .c-blog-post .entry-header .entry-meta .post-on .c-blog__date .post-category a:hover, body.manga-page .content-readmore:hover, body.text-ui-light.manga-page .content-readmore:hover, body.manga-page .chapter-readmore:hover, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .vol a:hover, .site-header .main-navigation.style-1 .search-navigation .search-navigation__wrap .link-adv-search a:hover, .woocommerce ul.products li.product h2:hover, .woocommerce .c-woo-breadcrumb a:hover, .genres_wrap .genres__collapse .genres ul li a:hover, .genres_wrap .genres__collapse .genres ul li a:hover:before ,.widget.c-released .released-item-wrap ul.list-released li a:hover,body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content:not(.release-year) a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content.release-year a:hover {
+    color: #007bff;
+}
+
+.tab-wrap .c-nav-tabs ul.c-tabs-content li.active a:after, .tab-wrap .c-nav-tabs ul.c-tabs-content li:hover a:after, {
+    background: #007bff;
+}
+
+.manga-title-badges.hot, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .manga-title-badges.hot {
+    background-color: #ff6b6b ;
+}
+
+.manga-title-badges.new, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .manga-title-badges.new {
+    background-color: #0f2133 ;
+}
+
+.manga-title-badges.custom, .manga-title-badges.custom {
+    background-color: #ff3a3a ;
+}
+
+.meta-item.rating .rating_current, .meta-item.rating .rating_current_half, body.manga-page .profile-manga .tab-summary .post-rating i.ion-ios-star, body.manga-page .profile-manga .tab-summary .post-rating i.ion-ios-star.rating_current, body.manga-page .profile-manga .tab-summary .post-rating i.ion-ios-star-half, body.manga-page .profile-manga .tab-summary .post-rating .user-rating i.ion-ios-star, body.manga-page .profile-manga .tab-summary .post-rating .post-total-rating i.ion-ios-star, body.manga-page .profile-manga .tab-summary .post-rating .post-total-rating i.ion-ios-star.rating_current, body.manga-page .profile-manga .tab-summary .post-rating .user-rating i.ion-ios-star, body.manga-page .profile-manga .tab-summary .post-rating .user-rating i.ion-ios-star.rating_current, .woocommerce .star-rating, .woocommerce .star-rating::before, body.manga-page .profile-manga .tab-summary .post-rating .post-total-rating i.ion-ios-star-half {
+    color: #0f2133 ;
+}
+
+.site-header .c-sub-header-nav {
+    background-color: #000000 ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list > li > a, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item span, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .btn-active-modal {
+    color: #ffffff ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .btn-active-modal {
+    border-color: #ffffff ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list > li:hover > a, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .btn-active-modal:hover {
+    color: #007bff ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .btn-active-modal:hover {
+    border-color: #007bff ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list > li.menu-item-has-children > ul.sub-menu, .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list > li.menu-item-has-children > ul.sub-menu .sub-menu, .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li .sub-menu .sub-menu a, .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li .sub-menu .sub-menu li:hover a, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu {
+    background-color: #000000 ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list .sub-menu li a, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu a {
+    color: #ffffff ;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list .sub-menu li a:hover, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu a:hover {
+    color: #007bff ;
+}
+
+.widget.c-popular .widget-view-more, #comments.comments-area #respond.comment-respond .comment-form .form-submit #submit, .site-header .search-main-menu form input[type=submit], body.search .c-search-header__wrapper .search-content .search-form .search-submit, .c-btn.c-btn_style-1, .settings-page input[type="submit"], .settings-page .remove-all #delete-bookmark-manga, body.reading-manga .entry-header .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .c-select-bottom .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .entry-header .select-pagination .nav-links .nav-previous a:not(:hover), body.reading-manga .c-select-bottom .select-pagination .nav-links .nav-previous a:not(:hover), .widget.c-released .released-search form [type="submit"], .wpcf7-submit, .woocommerce ul.products li.product .button, .woocommerce span.onsale, .woocommerce .woocommerce-pagination .page-numbers li span.current, .woocommerce .woocommerce-pagination .page-numbers li .prev:hover, .woocommerce .woocommerce-pagination .page-numbers li .next:hover, .woocommerce div.entry-summary form.cart .single_add_to_cart_button, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce .woocommerce-cart-form .cart button.button, .woocommerce .cart input.button:not(:hover) {
+    background-color : #0f2133 ;
+}
+
+.woocommerce .widget_shopping_cart .buttons a:not(:hover), .woocommerce.widget_shopping_cart .buttons a:not(:hover), .woocommerce .widget_price_filter .price_slider_amount .button:not(:hover), .woocommerce div.product form.cart .button, .woocommerce .cart-collaterals .checkout-button.button.alt {
+    background : #0f2133 ;
+}
+
+.c-btn.c-btn_style-2, body.search .c-search-header__wrapper .search-content .btn-search-adv.collapsed, body.search .c-search-header__wrapper .search-content .btn-search-adv, .genres_wrap a.btn-genres {
+    border-color : #0f2133 ;
+}
+
+.c-btn.c-btn_style-2, body.search .c-search-header__wrapper .search-content .btn-search-adv, .genres_wrap a.btn-genres {
+    color : #0f2133 ;
+}
+
+.widget.c-popular .widget-view-more, #comments.comments-area #respond.comment-respond .comment-form .form-submit #submit, .site-header .search-main-menu form input[type=submit], body.search .c-search-header__wrapper .search-content .search-form .search-submit, .c-btn.c-btn_style-1, .settings-page input[type="submit"], .settings-page .remove-all #delete-bookmark-manga, body.reading-manga .entry-header .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .c-select-bottom .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .entry-header .select-pagination .nav-links .nav-previous a:not(:hover), body.reading-manga .c-select-bottom .select-pagination .nav-links .nav-previous a:not(:hover), .widget.c-released .released-search form [type="submit"], .wpcf7-submit, .woocommerce ul.products li.product .button, .woocommerce .woocommerce-pagination .page-numbers li span.current, .woocommerce .widget_shopping_cart .buttons a:not(:hover), .woocommerce.widget_shopping_cart .buttons a:not(:hover), .widget_price_filter .price_slider_amount button, .woocommerce div.product form.cart .button, .woocommerce .cart-collaterals .checkout-button.button.alt, .woocommerce button.button.alt, .woocommerce a.button.alt, .woocommerce .woocommerce-cart-form .cart button.button, .woocommerce .woocommerce-cart-form .cart button.button, .woocommerce .cart input.button:not(:hover),#init-links .c-btn.c-btn_style-1 {
+    color : #ffffff ;
+}
+
+.widget.c-popular .widget-view-more:hover, #comments.comments-area #respond.comment-respond .comment-form .form-submit #submit:hover, .site-header .search-main-menu form input[type=submit]:hover, body.search .c-search-header__wrapper .search-content .search-form .search-submit:hover, .c-btn.c-btn_style-1:hover, .c-btn.c-btn_style-2:hover, body.search .c-search-header__wrapper .search-content .btn-search-adv:hover, .settings-page input[type="submit"]:hover, .settings-page .remove-all #delete-bookmark-manga:hover, body.reading-manga .entry-header .select-pagination .nav-links .btn a:hover, body.reading-manga .c-select-bottom .select-pagination .nav-links .btn a:hover, .widget.c-released .released-search form [type="submit"]:hover, .genres_wrap a.btn-genres:hover, .wpcf7-submit:hover, .navigation-ajax .load-ajax:not(.show-loading):hover, .go-to-top:hover, body.text-ui-light .popular-slider .slider__container .slick-arrow:hover, .woocommerce ul.products li.product .button:hover, .widget_shopping_cart .woocommerce-mini-cart__buttons a:hover, .woocommerce .widget_price_filter .price_slider_amount .button:hover, .woocommerce div.product form.cart .button:hover, .woocommerce .cart-collaterals .checkout-button.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce .woocommerce-cart-form .cart button.button:hover, .woocommerce .cart input.button:hover {
+    background-color : #007bff ;
+}
+
+.c-btn.c-btn_style-2:hover, body.search .c-search-header__wrapper .search-content .btn-search-adv:hover, body.search .c-search-header__wrapper .search-content .btn-search-adv.collapsed:hover, .genres_wrap a.btn-genres:hover {
+    border-color : #007bff ;
+}
+
+.widget.c-popular .widget-view-more:hover, #comments.comments-area #respond.comment-respond .comment-form .form-submit #submit:hover, .site-header .search-main-menu form input[type=submit]:hover, body.search .c-search-header__wrapper .search-content .search-form .search-submit:hover, .c-btn.c-btn_style-1:hover, .c-btn.c-btn_style-2:hover, body.search .c-search-header__wrapper .search-content .btn-search-adv:hover, .settings-page input[type="submit"]:hover, .settings-page .remove-all #delete-bookmark-manga:hover, body.reading-manga .entry-header .select-pagination .nav-links .btn a:hover, body.reading-manga .c-select-bottom .select-pagination .nav-links .btn a:hover, .widget.c-released .released-search form [type="submit"]:hover, .genres_wrap a.btn-genres:hover, .wpcf7-submit:hover, .woocommerce ul.products li.product .button:hover, .woocommerce .woocommerce-pagination .page-numbers li span.current:hover, .woocommerce .widget_shopping_cart .buttons a:hover, .woocommerce.widget_shopping_cart .buttons a:hover, .widget_price_filter .price_slider_amount button:hover, .woocommerce div.product form.cart .button:hover, .woocommerce .cart-collaterals .checkout-button.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce a.button.alt:hover, .woocommerce .woocommerce-cart-form .cart button.button:hover, .woocommerce .cart input.button:hover, #init-links .c-btn.c-btn_style-1:hover {
+    color : #ffffff ;
+}
+
+body {
+    font-family: Open Sans, serif;
+}
+
+body, #comments.comments-area #respond.comment-respond .comment-form > *, body.manga-page .profile-manga .tab-summary .post-content_item > *, body.manga-page .profile-manga .post-status .post-content_item > *, body.manga-page .content-readmore, .widget.my-history .my-history-item-wrap > *, .widget table#wp-calendar > thead > tr > td, .widget table#wp-calendar tbody > tr > td, .widget table#wp-calendar tfoot > tr > td, .widget table#wp-calendar > thead > tr > th, .widget table#wp-calendar tbody > tr > th, .widget table#wp-calendar tfoot > tr > th, .paging-navigation .nav-links .nav-button > a, .widget.widget_rss ul li .rssSummary, body.modal-open .modal .modal-content .modal-body .login label, body.modal-open .modal .modal-content .modal-body .login .submit .wp-submit, body.search .c-search-header__wrapper #search-advanced .search-advanced-form .form-group:not(.checkbox-group) > *, .c-breadcrumb .breadcrumb li a {
+    font-size: 17px
+}
+
+h3, .h3 {
+    line-height: 1.4em
+}
+
+h6, .h6 {
+    font-weight: 500
+}
+
+#pageloader.spinners {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: #222
+}
+
+p.madara-unyson {
+    color: #FF0000;
+}
+
+.table.table-hover.list-bookmark tr:last-child td {
+    text-align: center;
+}
+
+#adminmenu .wp-submenu li.current {
+    display: none !important;
+}
+
+.show_tgmpa_version {
+    float: right;
+    padding: 0em 1.5em 0.5em 0;
+}
+
+.tgmpa > h2 {
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 29px;
+    margin: 0;
+    padding: 9px 15px 4px 0;
+}
+
+.update-php {
+    width: 100%;
+    height: 98%;
+    min-height: 850px;
+    padding-top: 1px;
+}
+
+.c-blog-post .entry-content .entry-content_wrap .read-container img.alignleft {
+    margin: 10px 30px 10px 0 !important;
+}
+
+.c-blog-post .entry-content .entry-content_wrap .read-container img.alignright {
+    margin: 10px 0px 10px 30px !important;
+}
+
+.read-container i.fas.fa-spinner.fa-spin {
+    font-size: 31px;
+    color: #888;
+}
+
+.c-blog-post .entry-content .entry-content_wrap .read-container img {
+    cursor : pointer;
+}
+
+.choose-avatar .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.72);
+    z-index: 1;
+    display: none;
+}
+
+.choose-avatar .loading-overlay i.fas.fa-spinner {
+    font-size: 40px;
+    color: #ec3348;
+}
+
+.choose-avatar .loading-overlay .loading-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.choose-avatar.uploading .loading-overlay {
+    display: block;
+}
+
+.site-header .c-sub-header-nav .entry-header {
+    display: none;
+    margin-bottom: 15px;
+}
+
+.site-header .c-sub-header-nav.sticky .entry-header {
+    display: block;
+}
+
+.site-header .c-sub-header-nav.hide-sticky-menu.sticky .c-sub-nav_wrap {
+    display: none;
+}
+
+.site-header .c-sub-header-nav.hide-sticky-menu .entry-header {
+    margin-top: 15px;
+}
+
+.chapter-type-manga .c-blog-post .entry-content .entry-content_wrap .reading-content::before {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+body.modal-open .modal .modal-dialog, body.modal-open .modal .modal-content .modal-loading-screen {
+    background-image: none;
+    background-color: #1a64ad;
+}
+
+@media (max-width: 480px) {
+    .c-blog-post .entry-content .entry-content_wrap .reading-content {
+        margin-left:-15px;
+        margin-right: -15px
+    }
+}
+
+.settings-page table.list-bookmark > tbody tr td > div.mange-name:before {
+    content: "Manga Name";
+}
+
+.settings-page table.list-bookmark > tbody tr td > div.action:before {
+    content: "Edit";
+}
+
+.settings-page table.list-bookmark > tbody tr td > div.post-on:before {
+    content: "Updated Time";
+}

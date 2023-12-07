@@ -1,0 +1,69 @@
+.ai-viewports {
+    --ai: 1;
+}
+
+.ai-viewport-3 {
+    display: none !important;
+}
+
+.ai-viewport-2 {
+    display: none !important;
+}
+
+.ai-viewport-1 {
+    display: inherit !important;
+}
+
+.ai-viewport-0 {
+    display: none !important;
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+    .ai-viewport-1 {
+        display: none !important;
+    }
+
+    .ai-viewport-2 {
+        display: inherit !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .ai-viewport-1 {
+        display: none !important;
+    }
+
+    .ai-viewport-3 {
+        display: inherit !important;
+    }
+}
+
+.ai-rotate {
+    position: relative;
+}
+
+.ai-rotate-hidden {
+    visibility: hidden;
+}
+
+.ai-rotate-hidden-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ai-list-data, .ai-ip-data, .ai-filter-check, .ai-fallback, .ai-list-block, .ai-list-block-ip, .ai-list-block-filter {
+    visibility: hidden;
+    position: absolute;
+    width: 50%;
+    height: 1px;
+    top: -1000px;
+    z-index: -9999;
+    margin: 0px!important;
+}
+
+.ai-list-data, .ai-ip-data, .ai-filter-check, .ai-fallback {
+    min-width: 1px;
+}
