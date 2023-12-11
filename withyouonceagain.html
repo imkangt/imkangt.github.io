@@ -32,6 +32,33 @@
         <link rel="stylesheet" href="./assets/css/imkangt.css">
         <link rel="stylesheet" href="./assets/css/notoSansfont.css">
         <link rel="stylesheet" href="./assets/css/ep_list.css">
+        <script>
+            function reverseChapters() {
+                const containers = document.getElementsByClassName('list_type');
+    
+                // Lặp qua từng phần tử có class 'list_type'
+                for (let i = 0; i < containers.length; i++) {
+                    const container = containers[i];
+                    const chapters = container.getElementsByClassName('episode-items');
+                    
+                    // Chuyển NodeList thành mảng để sử dụng reverse()
+                    const chaptersArray = Array.from(chapters);
+                    
+                    // Đảo ngược thứ tự
+                    chaptersArray.reverse();
+                    
+                    // Xóa và thêm các chapters theo thứ tự mới
+                    while (container.firstChild) {
+                        container.removeChild(container.firstChild);
+                    }
+                    
+                    chaptersArray.forEach(chapter => {
+                        container.appendChild(chapter);
+                    });
+                }
+            }
+
+        </script>
     </head>
 <body class="wp-manga-template-default single single-wp-manga wp-embed-responsive wp-manga-page manga-page page header-style-1 sticky-enabled sticky-style-2 is-sidebar text-ui-light adult-content wpdiscuz_7.6.12">
     <div class="wrap">
@@ -77,6 +104,8 @@
                                                             <i class="fas fa-list"></i>
                                                             리스트 챕터
                                                         </h2>
+                                                        <a id="reverseButton" href="#" title="Change Order" class="btn-reverse-order" onclick="reverseChapters()"><i class="fa fa-sort"></i></a>                                                    </div>
+
                                                     </div>
                                                     <div class="page-content-listing single-page">
                                                         <div class="listing-chapters_wrap cols-1 show-more-show">
@@ -730,6 +759,25 @@
                                                                                                     </div>
                                                                                                     <p class="episode_stitle">이러지 마 세일아..!</p>
                                                                                                     <p class="episode_date">23.12.05</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </a>
+                                                                                        <a class="flex-container episode-items " data-seg1="comic" data-act="rent" href="./Data/With_You_Once_Again/Chapter 35.html">
+                                                                                            <div class="flex-item thumb">
+                                                                                                <div class="ep_thumb lazy loaded" data-ll-status="loaded" style="background-image: url(./Data/With_You_Once_Again/assets/Thumbnail/35-1.jpg);"></div>
+                                                                                                <div class="dark-disable"></div>
+                                                                                            </div>
+                                                                                            <div class="flex-item thumb">
+                                                                                                <div class="ep_thumb lazy loaded" data-ll-status="loaded" style="background-image: url(./Data/With_You_Once_Again/assets/Thumbnail/35-2.jpg);"></div>
+                                                                                                <div class="dark-disable"></div>
+                                                                                            </div>
+                                                                                            <div class="flex-item thumb_text">
+                                                                                                <div class="content_wrap">
+                                                                                                    <div class="tit_area clearfix">
+                                                                                                        <p class="episode_title">제35화</p>
+                                                                                                    </div>
+                                                                                                    <p class="episode_stitle">그만 떠들고 빨리 끝내기나 해</p>
+                                                                                                    <p class="episode_date">23.12.12</p>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </a>
