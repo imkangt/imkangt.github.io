@@ -58,8 +58,3 @@ body.manga-page .profile-manga .tab-summary {
     margin: 0 auto;
     max-width: 400px;
 }
-
-.c-blog__heading.style-2 a.btn-reverse-order i {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-}
