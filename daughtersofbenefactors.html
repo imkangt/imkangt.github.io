@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="./assets/css/ep_list.css">
         <script>
             function reverseChapters() {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
                 const containers = document.getElementsByClassName('list_type');
     
                 // Lặp qua từng phần tử có class 'list_type'
