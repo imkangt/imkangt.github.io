@@ -1,0 +1,598 @@
+/* Forms Profil Builder Pro CSS news rule */
+#user_consent_gdpr, #rememberme {
+    display: inherit;
+}
+
+input#register.submit.button, input#wppb-submit.button-primary, input#wppb-recover-password-button.submit.button {
+    background-color: #0f2133;
+}
+
+/* Header Image Properties */
+@media (min-width: 300px) and (max-width: 480px) {
+    .site-header .main-navigation.style-1 .wrap_branding {
+        width: 80%;
+    }
+
+    .site-header .main-.wrap_branding a img {
+        max-height: 90px;
+    }
+}
+
+/* Remove Padding On Manga Reading Image Viewer */
+.reading-manga .reading-content {
+    padding: 0 0px;
+}
+
+/* Ads Properties */
+.ads-center {
+    max-width: 730px;
+    margin: auto;
+}
+
+.wall-ads-control {
+    margin-top: 68px;
+}
+
+.center-ads iframe {
+    margin: auto;
+    display: block;
+}
+
+.ccadsv10lm {
+    visibility: hidden;
+    height: 0px;
+}
+
+/* Display all for "show more" effect */
+body.manga-page.text-ui-light .summary__content.show-more:after {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #494949);
+}
+
+body.manga-page.text-ui-light .listing-chapters_wrap.show-more .version-chap:after {
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), #494949);
+}
+
+/* Summury Infos in Manga Page */
+.summary_content {
+    color: #333;
+}
+
+body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px 100px / 120px;
+}
+
+.summary_content a {
+    color: #333;
+}
+
+body.manga-page .profile-manga .tab-summary .summary_image {
+    background: none;
+}
+
+body.manga-page .profile-manga .tab-summary .summary_image img {
+    border-radius: 50% 20% / 10% 40%;
+    box-shadow: 0 0 10px 0 #d3b0b0;
+    width: 100%;
+}
+
+body.manga-page .profile-manga .tab-summary .post-content_item .summary-heading h5, body.manga-page .profile-manga .post-status .post-content_item .summary-heading h5 {
+    color: #000;
+}
+
+#init-links {
+    display: flex;
+    justify-content: center;
+}
+
+/* Dark Theme Properties */
+body.text-ui-light .summary-content {
+    color: #333;
+}
+
+body.text-ui-light .post-content_item .summary-content a {
+    color: #333;
+}
+
+body.text-ui-light .post-content_item .summary-content a:hover {
+    color: #007bff;
+}
+
+body.text-ui-light .summary-heading h5 {
+    color: #000;
+}
+
+body.text-ui-light.manga-page .profile-manga .tab-summary .summary_image {
+    background: none;
+}
+
+body.text-ui-light.manga-page .profile-manga .tab-summary .summary_image img {
+    border-radius: 50% 20% / 10% 40%;
+    box-shadow: 0 0 10px 0 #d3b0b0;
+    width: 100%;
+}
+
+body.text-ui-light.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px 100px / 120px;
+}
+
+body.text-ui-light .c-blog-post .entry-header .entry-meta .post-on .posted-on a {
+    color: #fff;
+}
+
+body.page.text-ui-light .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter a, .text-ui-light .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter a, body.text-ui-light .settings-page .list-chapter .chapter-item .chapter a, body.search.text-ui-light .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter a {
+    color: #FFF
+}
+
+/* ============================= */
+body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .action_icon a i:hover {
+    color: #007bff;
+}
+
+/* Post Title */
+div[class^="post"] .profile-manga .container .post-title h1 {
+    color: #fff;
+    text-shadow: 0px -2px 7px #000;
+    font-size: 3rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    font-weight: 600;
+}
+
+@media (max-width: 992px) {
+    div[class^="post"] .profile-manga .container .post-title h1 {
+        color: #fff;
+        font-size: 2rem;
+        text-shadow: 0px -2px 7px #fff;
+        background: none;
+    }
+}
+
+/* Breadcrumb */
+.c-breadcrumb .breadcrumb li a, .c-breadcrumb .breadcrumb li {
+    color: #fff;
+    font-size: 1.8rem;
+    text-shadow: 3px 3px 10px #000;
+    font-weight: 900;
+}
+
+.c-breadcrumb .breadcrumb li + li:before {
+    color: #fff;
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 5px #000;
+    font-weight: 900;
+}
+
+.c-breadcrumb-wrapper {
+    border-right: 0px;
+    border-bottom: 0px;
+}
+
+.site-header .c-sub-header-nav.with-border {
+    border-bottom: 0px;
+}
+
+@media (max-width: 498px) {
+    .c-breadcrumb .breadcrumb li a, .c-breadcrumb .breadcrumb li {
+        font-size: 0.9rem;
+    }
+
+    .c-breadcrumb .breadcrumb li + li:before {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 498px) {
+    .c-breadcrumb-wrapper .action-icon {
+        margin-top: 30px;
+    }
+}
+
+#manga-reading-nav-head .c-breadcrumb .breadcrumb li a, #manga-reading-nav-head .c-breadcrumb .breadcrumb li, #manga-reading-nav-head .c-breadcrumb .breadcrumb li + li:before {
+    color: #000;
+    text-shadow: none;
+}
+
+body.text-ui-light #manga-reading-nav-head .c-breadcrumb .breadcrumb li a, body.text-ui-light #manga-reading-nav-head .c-breadcrumb .breadcrumb li, body.text-ui-light #manga-reading-nav-head .c-breadcrumb .breadcrumb li + li:before {
+    color: #fff;
+    text-shadow: none;
+}
+
+#manga-reading-nav-head .c-breadcrumb .breadcrumb li a:hover, #manga-reading-nav-head .c-breadcrumb .breadcrumb li:hover {
+    color: #007bff !important;
+}
+
+/* Bread Background & Genres List */
+.c-genres-block.archive-page .genres__collapse a {
+    color: #fff;
+    text-shadow: 1px 1px 5px #000;
+}
+
+body > div.wrap > div > div.site-content > div.c-breadcrumb-wrapper > div > div > div > div.c-genres-block.archive-page > div > div.genres__collapse > div > ul > li > a::before {
+    color: #fff;
+}
+
+/* Dark Theme Properties */
+body.text-ui-light {
+    color: #fff;
+}
+
+body.text-ui-light a:not(:hover) {
+    color: #fff;
+}
+
+body.text-ui-light.manga-page .profile-manga .tab-summary .post-rating span {
+    color: #333;
+}
+
+body.text-ui-light.manga-page .genres_wrap .genres__collapse .genres ul li a:before {
+    color: #fff;
+}
+
+body.text-ui-light.manga-page .description-summary.hide_show-more {
+    margin-bottom: 38px;
+}
+
+/* Search Page */
+body.text-ui-light.search .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content {
+    color: #fff;
+}
+
+body.text-ui-light.search.text-ui-light .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content:not(.release-year) a {
+    color: #fff;
+}
+
+body.text-ui-light .tab-wrap .c-nav-tabs ul.c-tabs-content li a {
+    color: #fff;
+}
+
+/* NEWS PAGE */
+body.text-ui-light div.c-blog-listing input::placeholder {
+    color: #fff;
+}
+
+/* DATE RELEASES WIDGET */
+.widget.c-released .released-search form input[type="text"]::placeholder {
+    color: #FFF;
+}
+
+/* POST */
+body.text-ui-light .c-blog-post .entry-content {
+    color: #fff;
+}
+
+/* SEARCH ENGINE */
+body.text-ui-light .site-header .c-header__top .manga-autocomplete.ui-autocomplete, .c-search-header__wrapper .manga-autocomplete.ui-autocomplete {
+    color: rgb(136, 136, 136);
+}
+
+/* STARS */
+body.text-ui-light .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .rating, body.text-ui-light.search .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .meta-item .ratings_stars {
+    text-shadow: 0px 0px 2px #fff;
+}
+
+/* Search Above Heading Menu */
+.c-header__top .search-main-menu {
+    background: url(https://mangadistrict.com/wp-content/uploads/2021/01/search-bg-e1611958848414.jpg);
+    background-size: 100% 100%;
+}
+
+.link-adv-search a {
+    color: #fff;
+    font-weight: 900;
+    text-shadow: 0px 0px 15px #000;
+}
+
+.site-header .search-main-menu form input[type="text"]:hover::placeholder {
+    color: #fff;
+}
+
+body.text-ui-light .site-header .search-main-menu form input[type="text"]:hover, .site-header .search-main-menu form input[type="text"]:active {
+    background-color: rgb(235 235 235 / 85%) !important;
+}
+
+/* Search Result Page */
+.site-header .c-header__top form#blog-post-search.manga-search-form .loader-inner, .c-search-header__wrapper .manga-search-form .loader-inner {
+    background-color: #c44d58;
+}
+
+body > div.wrap > div > div.site-content > div.c-search-header__wrapper > div > div.search-content > a {
+    color: #fff;
+}
+
+body.search .c-search-header__wrapper #search-advanced .search-advanced-form .form-group.checkbox-group .checkbox label {
+    color: #fff;
+}
+
+body.search .c-search-header__wrapper #search-advanced .search-advanced-form .form-group:not(.checkbox-group) span {
+    color: #fff;
+}
+
+body.search .c-search-header__wrapper #search-advanced .search-advanced-form .form-group .checkbox-inline label {
+    color: #fff;
+}
+
+body.search .c-search-header__wrapper .search-content .search-form .search-submit {
+    border-radius: 0px;
+}
+
+/* Pagination System */
+.wp-pagenavi span.current {
+    color: #fff !important;
+    background: #0f2133;
+    text-shadow: 1px 1px 7px #fff;
+}
+
+/* Dark Theme */
+body.text-ui-light .wp-pagenavi span.current {
+    color: #0f2133 !important;
+    background: #007bff;
+    text-shadow: 1px 1px 7px #fff;
+}
+
+body.text-ui-light .wp-pagenavi span, body.text-ui-light .wp-pagenavi a.nextpostslink, body.text-ui-light .wp-pagenavi a.previouspostslink {
+    background-color: #3e5c7a;
+}
+
+/* ============================= */
+.wp-pagenavi a:hover {
+    background-color: #007bff;
+}
+
+
+/* Manga Hover Information */
+/* Dark Theme */
+body.text-ui-light .summary-heading h5 {
+    color: #fff;
+}
+
+/* ============================= */
+/* Main Menu */
+.nav.navbar-nav.main-navbar li .sub-menu li a:hover {
+    background-color: #007bff;
+}
+
+.main-navigation .main-menu ul {
+    justify-content: center;
+}
+
+/* Secondary Menu */
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li.menu-item-has-children.active > a {
+    color: #fff;
+    text-shadow: 1px 1px 7px #fff;
+}
+
+.site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Searh Icon For Small Screen Device Resolution */
+@media (max-width: 340px) {
+    .site-header .main-navigation.style-1 .search-navigation {
+        display: none;
+    }
+}
+
+/* Sidebar Agencement for intermediate resolution */
+@media (min-width: 576px) and (max-width: 1200px) {
+    .col-md-8 {
+        -ms-flex: 0 0 66.666667%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .col-md-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .genres_wrap .genres__collapse .genres ul li {
+        text-align: center;
+    }
+
+    #manga-history-id-2 > div {
+        width: 100%;
+    }
+
+    #manga-recent-2 > div {
+        width: 100%;
+    }
+}
+
+/* Page Settings */
+/* Dark Theme */
+body.text-ui-light .settings-page .nav-tabs-wrap ul.nav-tabs li a:hover {
+    color: #007bff;
+}
+
+body.text-ui-light .settings-page table.list-bookmark tbody tr:last-child {
+    color: #fff;
+}
+
+body.text-ui-light .settings-page .tabs-content-wrap .tab-group-item .tab-item .history-content .item-infor .chapter span a {
+    color: #fff;
+}
+
+body.text-ui-light .settings-page .post-on {
+    color: #fff;
+}
+
+body.text-ui-light .settings-page .tabs-content-wrap .tab-group-item .tab-item label {
+    color: #fff;
+}
+
+body.text-ui-light .settings-page .tab-group-item input[type="radio"]:checked + label:before {
+    color: #fff;
+}
+
+body.text-ui-light form > div:nth-child(4) > div.settings-title > span {
+    color: #fff;
+}
+
+.text-ui-light .settings-page .tabs-content-wrap .tab-group-item .tab-item .form-choose-avatar {
+    color: #fff;
+}
+
+body.text-ui-light .settings-page .tabs-content-wrap .tab-group-item .tab-item .show {
+    color: #fff;
+}
+
+/* ============================= */
+.settings-page .nav-tabs-wrap ul.nav-tabs li:not(.active):hover a {
+    color: #007bff;
+}
+
+/* WP Form */
+/*
+div.wpforms-container-full .wpforms-form input[type=checkbox], div.wpforms-container-full .wpforms-form input[type=radio] {
+display: none;
+}
+
+input[id^="wpforms-"][type="radio"] {
+display: initial !important;
+} */
+/** HM2D SUB MAV MENU LINK */
+.sub-nav_list_hm2d-link {
+    color: #ff0e0e;
+}
+
+/** CUSTOM BADGE STYLE **/
+.manga-title-badges.custom {
+    box-shadow: 1px 1px 3px black;
+    border-radius: 0px;
+    opacity: 1;
+}
+
+.post-title > .manga-title-badges.custom.adult {
+    width: 100%;
+    opacity: 1;
+    display: none !important;
+}
+
+.post-title > .manga-title-badges.custom.end, .manga-title-badges.custom.hiatus {
+    opacity: 1;
+    box-shadow: 0px 1px 16px 1px #fff;
+}
+
+.post-title > .manga-title-badges.new {
+    display: none !important;
+}
+
+.manga-title-badges.custom.end, .manga-title-badges.custom.hiatus {
+    opacity: 1;
+    width: 100%;
+    left: 0 !important;
+    background-color: #0f2133;
+    border-radius: 0px;
+    top: 199px !important;
+    box-shadow: 0px 1px 16px 7px #fff;
+}
+
+@media (max-width: 992px) {
+    .manga-title-badges.custom.end, .manga-title-badges.custom.hiatus {
+        margin-bottom: 50px;
+    }
+}
+
+.badge-pos-2 .item-thumb a .manga-title-badges:nth-of-type(2) {
+    left: 37px;
+}
+
+.popular-slider .slider__thumb_item .manga-title-badges.new {
+    background-color: #37b7da;
+    margin-top: 150px;
+    margin-left: 5px;
+}
+
+.manga-title-badges.new {
+    background-color: #0f2133;
+    box-shadow: 1px 1px 3px black;
+}
+
+#manga-popular-slider-2 .c-image-hover img {
+    height: 180px;
+}
+
+/* One Signal Custom Style */
+#onesignal-bell-container.onesignal-reset.onesignal-bell-container-bottom-right {
+    right: 10px !important;
+    z-index: 5;
+}
+
+.go-to-top.active {
+    z-index: 5;
+}
+
+/* THUMB RESIZE */
+.page-item-detail.manga div[id^="manga-item-"] > a > img {
+    width: 100%;
+    height: 224px;
+}
+
+/* CHAPTER ITEMS (Button on last chapter) */
+body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter {
+    background: none;
+}
+
+.widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter {
+    background: none;
+}
+
+.popular-slider .slider__container .slider__item .slider__content .slider__content_item .chapter-item .chapter a {
+    border: none;
+}
+
+.chapter-item .chapter a:visited {
+    color: #007bff;
+}
+
+/* Dark Theme */
+body.page.text-ui-light .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter, .text-ui-light .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter, body.text-ui-light .settings-page .list-chapter .chapter-item .chapter, body.search.text-ui-light .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter {
+    border: none;
+}
+
+/* CHAPTER ITEM & SIDEBAR WIDGET */
+.widget.c-popular .popular-item-wrap .popular-content .chapter-item span, .widget.c-popular .popular-item-wrap .popular-content .chapter-item span a {
+    font-weight: bold;
+}
+
+/* ============================= */
+/* Reading History */
+.hide-widget-history {
+    display: none;
+}
+
+.show-widget-history {
+    display: initial;
+}
+
+.ajax-history {
+    padding: 0px;
+}
+
+/* ============================= */
+/* Rading Manga Page Content */
+/* .reading-content img[id^="image-"] {
+width: 100%;
+} */
+/** Prolfil Builder **/
+/** LOGIN FROM  **/
+div[class^="wppb-"] input[type="checkbox"] + label:before, div[class^="wppb-"] input[type="radio"] + label:before {
+    display: none;
+}
+
+.wppb-form-field.wppb-default-password button.wppb-toggle-pw, .wppb-form-field.wppb-default-repeat-password button.wppb-toggle-pw, #wppb-login-wrap .login-password button.wppb-toggle-pw {
+    top: 0px;
+}
+
+/** Dark Theme **/
+body.page.text-ui-light form[id^="wppb-"] input, body.page.text-ui-light form[id^="wppb-"] textarea {
+    color: #000 !important;
+    background-color: #fff;
+}
+
+/* ============================= */
