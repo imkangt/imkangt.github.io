@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>행운의 룰렛 🎡</title>
+    <meta name="color-scheme" content="dark light">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --bg-color: #fdf2f8;
             --bg-gradient: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
             --text-main: #831843;
             --accent: #db2777;
@@ -25,6 +27,7 @@
         }
 
         [data-theme="dark"] {
+            --bg-color: #1f0d2b;
             --bg-gradient: linear-gradient(135deg, #1f0d2b 0%, #3b1c4a 100%);
             --text-main: #fce7f3;
             --accent: #f472b6;
@@ -73,7 +76,8 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background: var(--bg-gradient);
+            background-color: var(--bg-color);
+            background-image: var(--bg-gradient);
             color: var(--text-main);
             display: flex;
             flex-direction: column;
@@ -82,7 +86,8 @@
             overflow-x: hidden;
             position: relative;
             padding-bottom: 50px;
-            transition: color 0.5s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            -webkit-transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         /* Floating Background */
@@ -470,7 +475,7 @@
     </style>
 </head>
 
-<body>
+<body><!-- theme applied on <html> element -->
     <a href="index.html" class="back-btn">⬅️ 메인으로 돌아가기</a>
     <button id="theme-toggle" class="theme-toggle">🌙</button>
 
@@ -571,26 +576,34 @@
     <script>
         (function() {
             // ---- Theme Toggle Logic ----
+            // Use <html> (documentElement) for data-theme for better iOS Safari compatibility
             var themeToggle = document.getElementById('theme-toggle');
+            var htmlEl = document.documentElement;
             var currentTheme = localStorage.getItem('theme') || 'dark';
             
-            if (currentTheme === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-            } else {
-                document.body.removeAttribute('data-theme');
-                themeToggle.textContent = '🌞';
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    htmlEl.setAttribute('data-theme', 'dark');
+                    themeToggle.textContent = '🌙';
+                } else {
+                    htmlEl.removeAttribute('data-theme');
+                    themeToggle.textContent = '🌞';
+                }
+                // Force iOS Safari to repaint gradients by toggling a class
+                document.body.style.display = 'none';
+                document.body.offsetHeight; // trigger reflow
+                document.body.style.display = '';
             }
 
+            applyTheme(currentTheme);
+
             themeToggle.addEventListener('click', function() {
-                if (document.body.getAttribute('data-theme') === 'dark') {
-                    document.body.removeAttribute('data-theme');
+                if (htmlEl.getAttribute('data-theme') === 'dark') {
                     localStorage.setItem('theme', 'light');
-                    themeToggle.textContent = '🌞';
+                    applyTheme('light');
                 } else {
-                    document.body.setAttribute('data-theme', 'dark');
                     localStorage.setItem('theme', 'dark');
-                    themeToggle.textContent = '🌙';
+                    applyTheme('dark');
                 }
             });
 

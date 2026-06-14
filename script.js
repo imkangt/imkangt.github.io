@@ -1,25 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Theme Toggle Logic
+    // Use <html> (documentElement) for data-theme for better iOS Safari compatibility
     const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
     const currentTheme = localStorage.getItem('theme') || 'dark';
     
-    if (currentTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '🌙';
-    } else {
-        document.body.removeAttribute('data-theme');
-        themeToggle.textContent = '🌞';
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            htmlEl.setAttribute('data-theme', 'dark');
+            themeToggle.textContent = '🌙';
+        } else {
+            htmlEl.removeAttribute('data-theme');
+            themeToggle.textContent = '🌞';
+        }
+        // Force iOS Safari to repaint gradients
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // trigger reflow
+        document.body.style.display = '';
     }
 
+    applyTheme(currentTheme);
+
     themeToggle.addEventListener('click', () => {
-        if (document.body.getAttribute('data-theme') === 'dark') {
-            document.body.removeAttribute('data-theme');
+        if (htmlEl.getAttribute('data-theme') === 'dark') {
             localStorage.setItem('theme', 'light');
-            themeToggle.textContent = '🌞';
+            applyTheme('light');
         } else {
-            document.body.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
-            themeToggle.textContent = '🌙';
+            applyTheme('dark');
         }
     });
 
