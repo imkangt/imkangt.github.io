@@ -305,4 +305,14 @@ body {
     transform: scale(0.95);
 }
 
-
+/* === FIX BÓNG MỜ KHI CHẠM TRÊN ANDROID/iOS === */
+.theme-toggle,
+.cute-btn,
+.envelope,
+.envelope-wrapper,
+a {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
