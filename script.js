@@ -69,36 +69,4 @@ document.addEventListener('DOMContentLoaded', () => {
         fire(0.1, { spread: 120, startVelocity: 45 });
     }
 
-    // Lucky Charm Logic
-    const charmBtn = document.getElementById('charm-btn');
-    const charmMessage = document.getElementById('charm-message');
-    
-    const messages = [
-        "야옹~ 넌 할 수 있어! 널 믿어! 🐱🌟",
-        "힘들면 고양이처럼 꾹꾹이 하면서 쉬어! 🐾✨",
-        "성적보다 너의 노력이 훨씬 중요해! 츄르 줄게! 🐟❤️",
-        "크게 숨을 들이마셔봐... 다 잘 될 거야! 냥! 🍃",
-        "시험 잘 보면 맛있는 거 사줄게 🧶🧋",
-        "조금만 더 힘내자, 화이팅! 냥냥! 💪",
-        "물 많이 마시고 푹 자는 거 잊지 마! 골골골~ 💧😴"
-    ];
-
-    charmBtn.addEventListener('click', () => {
-        const randomIndex = Math.floor(Math.random() * messages.length);
-        
-        charmMessage.textContent = messages[randomIndex];
-        charmMessage.classList.remove('hidden');
-        charmMessage.classList.remove('show');
-        
-        setTimeout(() => {
-            charmMessage.classList.add('show');
-        }, 50);
-
-        confetti({
-            particleCount: 50,
-            spread: 60,
-            origin: { y: 0.8 },
-            colors: ['#f472b6', '#fbcfe8', '#db2777']
-        });
-    });
 });

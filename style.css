@@ -305,24 +305,4 @@ body {
     transform: scale(0.95);
 }
 
-#charm-message {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: var(--charm-bg);
-    border-radius: 15px;
-    border: 2px solid var(--charm-border);
-    color: var(--charm-text);
-    font-weight: 600;
-    font-size: 1.1rem;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.5s, transform 0.5s, background-color 0.5s, color 0.5s, border-color 0.5s;
-}
 
-#charm-message.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-.hidden {
-    display: none;
-}
