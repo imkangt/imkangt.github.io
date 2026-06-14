@@ -283,6 +283,8 @@
         }
 
         #wheel-canvas {
+            width: 310px;
+            height: 310px;
             border-radius: 50%;
             border: 5px solid var(--wheel-border);
             box-shadow: 0 0 20px rgba(255,215,0,0.4), 0 0 40px rgba(0,0,0,0.3);
@@ -723,18 +725,32 @@
                 }
             }
 
-            // ---- Draw the Wheel ----
+            // ---- Draw the Wheel (High-DPI support) ----
+            function setupCanvasHiDPI() {
+                var dpr = window.devicePixelRatio || 1;
+                // The CSS display size of the canvas
+                var displaySize = 310;
+                // Set the internal buffer to match the DPI
+                canvas.width = displaySize * dpr;
+                canvas.height = displaySize * dpr;
+                // Scale the context so drawing commands use CSS pixel coordinates
+                ctx.scale(dpr, dpr);
+            }
+
             function drawWheel() {
+                var dpr = window.devicePixelRatio || 1;
+                // Use CSS display size for all coordinates
+                var displaySize = 310;
                 var numSectors = PRIZES.length;
                 var arc = (2 * Math.PI) / numSectors;
-                var cx = canvas.width / 2;
-                var cy = canvas.height / 2;
-                var r = (canvas.width / 2) - 5;
+                var cx = displaySize / 2;
+                var cy = displaySize / 2;
+                var r = (displaySize / 2) - 5;
 
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.clearRect(0, 0, displaySize, displaySize);
 
                 for (var i = 0; i < numSectors; i++) {
-                    var startAngle = i * arc - Math.PI / 2; // Start from top (12 o'clock)
+                    var startAngle = i * arc - Math.PI / 2;
                     var endAngle = startAngle + arc;
 
                     // Draw sector fill
@@ -754,28 +770,28 @@
                     ctx.lineWidth = 2;
                     ctx.stroke();
 
-                    // Draw text
+                    // Draw text — using larger font for clarity
                     ctx.save();
                     var midAngle = startAngle + arc / 2;
                     var textR = r * 0.65;
                     ctx.translate(cx + Math.cos(midAngle) * textR, cy + Math.sin(midAngle) * textR);
                     ctx.rotate(midAngle + Math.PI / 2);
                     ctx.fillStyle = "#ffffff";
-                    ctx.font = "bold 11px 'Quicksand', sans-serif";
+                    ctx.font = "bold 13px 'Quicksand', sans-serif";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "middle";
-                    ctx.shadowColor = "rgba(0,0,0,0.5)";
-                    ctx.shadowBlur = 3;
+                    ctx.shadowColor = "rgba(0,0,0,0.6)";
+                    ctx.shadowBlur = 4;
 
                     var text = PRIZES[i].name;
                     var parts = text.split(" ");
                     if (parts.length >= 3) {
                         var mid = Math.ceil(parts.length / 2);
-                        ctx.fillText(parts.slice(0, mid).join(" "), 0, -7);
-                        ctx.fillText(parts.slice(mid).join(" "), 0, 7);
+                        ctx.fillText(parts.slice(0, mid).join(" "), 0, -8);
+                        ctx.fillText(parts.slice(mid).join(" "), 0, 8);
                     } else if (parts.length === 2) {
-                        ctx.fillText(parts[0], 0, -7);
-                        ctx.fillText(parts[1], 0, 7);
+                        ctx.fillText(parts[0], 0, -8);
+                        ctx.fillText(parts[1], 0, 8);
                     } else {
                         ctx.fillText(text, 0, 0);
                     }
@@ -785,17 +801,18 @@
 
                 // Draw center circle
                 ctx.beginPath();
-                ctx.arc(cx, cy, 18, 0, Math.PI * 2);
+                ctx.arc(cx, cy, 20, 0, Math.PI * 2);
                 ctx.fillStyle = "#ffd700";
+                ctx.shadowColor = "transparent";
+                ctx.shadowBlur = 0;
                 ctx.fill();
                 ctx.strokeStyle = "#fff";
                 ctx.lineWidth = 2;
                 ctx.stroke();
                 ctx.fillStyle = "#333";
-                ctx.font = "bold 12px 'Quicksand', sans-serif";
+                ctx.font = "bold 14px 'Quicksand', sans-serif";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
-                ctx.shadowBlur = 0;
                 ctx.fillText("GO", cx, cy);
             }
 
@@ -945,6 +962,7 @@
 
             // ---- Initialize ----
             state = loadState();
+            setupCanvasHiDPI();
             drawWheel();
             updateUI();
         })();

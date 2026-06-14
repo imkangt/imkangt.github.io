@@ -81,16 +81,26 @@ function updateUI() {
     if (spinBtn) spinBtn.disabled = state.spinsLeft <= 0 || isSpinning;
 }
 
-// ---- Canvas Drawing ----
+// ---- Canvas Drawing (High-DPI support) ----
+function setupCanvasHiDPI() {
+    if (!canvas || !ctx) return;
+    const dpr = window.devicePixelRatio || 1;
+    const displaySize = 310;
+    canvas.width = displaySize * dpr;
+    canvas.height = displaySize * dpr;
+    ctx.scale(dpr, dpr);
+}
+
 function drawWheel() {
     if (!ctx) return;
+    const displaySize = 310;
     const numSectors = PRIZES.length;
     const arc = (2 * Math.PI) / numSectors;
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = canvas.width / 2;
+    const centerX = displaySize / 2;
+    const centerY = displaySize / 2;
+    const radius = (displaySize / 2) - 5;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, displaySize, displaySize);
 
     for (let i = 0; i < numSectors; i++) {
         const angle = i * arc;
@@ -296,5 +306,6 @@ function fireConfettiSmall() {
 }
 
 // ---- Init ----
+setupCanvasHiDPI();
 drawWheel();
 updateUI();
