@@ -576,6 +576,7 @@
                 <li>맛있는 거 사주기 — <strong>2%</strong></li>
                 <li>올리브영 같이 가기 — <strong>1%</strong></li>
                 <li>롯데마트 같이 가기 — <strong>1%</strong></li>
+                <li>용돈 주기 — <strong>0.075%</strong></li>
                 <li>소원 하나 들어주기 — <strong>0.05%</strong></li>
             </ol>
         </div>
@@ -630,13 +631,14 @@
             // ---- Prize Configuration ----
             var PRIZES = [
                 { name: "소원 하나 들어주기", prob: 0.05, color: "#ef4444" },
+                { name: "용돈 주기", prob: 0.075, color: "#14b8a6" },
                 { name: "올리브영 같이 가기", prob: 1.0, color: "#f59e0b" },
                 { name: "롯데마트 같이 가기", prob: 1.0, color: "#10b981" },
                 { name: "맛있는 거 사주기", prob: 2.0, color: "#3b82f6" },
                 { name: "밀크티 사주기", prob: 3.0, color: "#8b5cf6" },
                 { name: "뽀뽀 하기", prob: 5.0, color: "#ec4899" },
                 { name: "안아주기", prob: 10.0, color: "#f97316" },
-                { name: "다음 기회에", prob: 77.95, color: "#6b7280" }
+                { name: "다음 기회에", prob: 77.875, color: "#6b7280" }
             ];
 
             var CODES = {
@@ -691,7 +693,23 @@
                     };
                 }
                 // Ensure prizeHistory exists for older states
-                if (!saved.prizeHistory) saved.prizeHistory = {};
+                if (!saved.prizeHistory) {
+                    saved.prizeHistory = {};
+                } else if (!saved.migration_yongdon) {
+                    // Shift indices to accommodate "용돈 주기" inserted at index 1
+                    var newHistory = {};
+                    if (saved.prizeHistory[0] !== undefined) newHistory[0] = saved.prizeHistory[0]; // 소원 하나 들어주기 (index 0) remains index 0
+                    
+                    // Shift all other items by 1 (e.g., old index 1 becomes index 2)
+                    for (var i = 1; i <= 7; i++) {
+                        if (saved.prizeHistory[i] !== undefined) {
+                            newHistory[i + 1] = saved.prizeHistory[i];
+                        }
+                    }
+                    saved.prizeHistory = newHistory;
+                    saved.migration_yongdon = true;
+                    try { localStorage.setItem("luckyWheelState", JSON.stringify(saved)); } catch(e) {}
+                }
                 return saved;
             }
 
@@ -715,6 +733,7 @@
                 if (!grid) return;
                 grid.innerHTML = "";
                 for (var i = 0; i < PRIZES.length; i++) {
+                    if (PRIZES[i].name === "다음 기회에") continue; // Hide this item as intended
                     var count = (state.prizeHistory && state.prizeHistory[i]) ? state.prizeHistory[i] : 0;
                     var item = document.createElement("div");
                     item.className = "stats-grid-item";
