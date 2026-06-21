@@ -1,61 +1,267 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="dark">
-
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>화이팅! 넌 할 수 있어! ✨</title>
-    <meta name="color-scheme" content="dark light">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>SOYOL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 40%, #2d1b69 70%, #0a0a1a 100%);
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 40% 70%, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(2px 2px at 60% 20%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(2px 2px at 80% 50%, rgba(255, 255, 255, 0.15), transparent),
+                radial-gradient(1px 1px at 10% 80%, rgba(255, 255, 255, 0.25), transparent),
+                radial-gradient(1px 1px at 70% 90%, rgba(255, 255, 255, 0.2), transparent),
+                radial-gradient(1px 1px at 90% 10%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.15), transparent);
+            animation: twinkle 4s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: #7c3aed;
+            top: -100px;
+            right: -50px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            background: #2563eb;
+            bottom: -80px;
+            left: -60px;
+            animation-delay: -3s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: #ec4899;
+            top: 50%;
+            left: 50%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        .container {
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        /* Icon */
+        .icon-wrapper {
+            margin-bottom: 2.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow:
+                0 8px 32px rgba(124, 58, 237, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: rgba(255, 255, 255, 0.85);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow:
+                    0 8px 32px rgba(124, 58, 237, 0.3),
+                    inset 0 0 20px rgba(255, 255, 255, 0.05);
+            }
+            50% {
+                box-shadow:
+                    0 8px 48px rgba(124, 58, 237, 0.5),
+                    inset 0 0 30px rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        /* Main message */
+        .message-primary {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .message-secondary {
+            font-size: 1.15rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.8), transparent);
+            margin: 2rem auto;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        /* Footer hint */
+        .hint {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        /* Brand name */
+        .brand-name {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #a78bfa, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .message-primary {
+                font-size: 1.3rem;
+            }
+            .message-secondary {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
-
-<body><!-- theme applied on <html> element -->
-    <!-- Theme Toggle -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-
-    <!-- Floating background elements (Cat Theme) -->
-    <div class="floating-bg">
-        <span class="bubble">🐱</span>
-        <span class="bubble">🐾</span>
-        <span class="bubble">🐟</span>
-        <span class="bubble">🍀</span>
-        <span class="bubble">🧶</span>
-        <span class="bubble">✨</span>
-    </div>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
     <div class="container">
-        <!-- Hero Section -->
-        <header class="hero">
-            <h1>화이팅! 다 잘 될 거야 🍀</h1>
-            <p>곧 시험이네, 너무 스트레스 받지 마. 널 위해 작은 깜짝 선물을 준비했어!</p>
-        </header>
+        <h1 class="brand-name">KangT</h1>
 
-        <!-- Interactive Envelope -->
-        <div class="envelope-wrapper">
-            <div id="envelope" class="envelope">
-                <div class="front flap"></div>
-                <div class="cat">🐱</div>
-                <div class="front pocket"></div>
-                <div class="letter">
-                    <div class="words line1">소율이에게,</div>
-                    <div class="words line2">시험 잘 봐! 성적이 너의 전부를 말해주는 건 아니라는 걸 기억해. 최선을 다하면 그걸로 충분해. 많이 사랑해 💕</div>
-                    <div class="words line3">- Kang -</div>
-                </div>
+        <div class="icon-wrapper">
+            <div class="icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
             </div>
-            <p class="instruction">👆 편지를 클릭해서 열어봐 👆</p>
         </div>
 
-        <!-- Lucky Wheel Link Section -->
-        <div class="lucky-charm-section">
-            <h3>오늘 당신의 운세는? 행운의 룰렛을 돌려보세요! 🎡👇</h3>
-            <a href="wheel.html" class="cute-btn" style="display: inline-block; text-decoration: none; margin-top: 10px;">행운의 룰렛 돌리러 가기 🎰</a>
-        </div>
+        <p class="message-primary">
+            웹사이트는 만들어진 목적을 다했습니다.
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="message-secondary">
+            다음에 재미있는 것들을 기대해 주세요.
+        </p>
+
+        <p class="hint">Coming Soon</p>
     </div>
-
-    <!-- Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="script.js"></script>
 </body>
-
 </html>
