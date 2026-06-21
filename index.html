@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOYOL</title>
+    <title>SOYUL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
@@ -47,8 +48,13 @@
         }
 
         @keyframes twinkle {
-            0% { opacity: 0.5; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
         /* Floating orbs */
@@ -89,8 +95,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.05); }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
         }
 
         .container {
@@ -134,11 +147,14 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow:
                     0 8px 32px rgba(124, 58, 237, 0.3),
                     inset 0 0 20px rgba(255, 255, 255, 0.05);
             }
+
             50% {
                 box-shadow:
                     0 8px 48px rgba(124, 58, 237, 0.5),
@@ -202,6 +218,7 @@
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -213,6 +230,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -224,15 +242,18 @@
             .message-primary {
                 font-size: 1.3rem;
             }
+
             .message-secondary {
                 font-size: 1rem;
             }
+
             .container {
                 padding: 2rem 1.5rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -244,9 +265,9 @@
         <div class="icon-wrapper">
             <div class="icon">
                 <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                    <path d="M2 17l10 5 10-5"/>
-                    <path d="M2 12l10 5 10-5"/>
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
                 </svg>
             </div>
         </div>
@@ -264,4 +285,5 @@
         <p class="hint">Coming Soon</p>
     </div>
 </body>
+
 </html>
