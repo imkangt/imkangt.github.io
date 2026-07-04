@@ -10,7 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
 
         html, body {
             width: 100%; height: 100%;
@@ -18,6 +26,7 @@
             font-family: 'Noto Sans KR', sans-serif;
             background: #000;
             cursor: crosshair;
+            -webkit-user-drag: none;
         }
 
         canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
@@ -234,6 +243,13 @@
         }
         resize();
         window.addEventListener('resize', () => { resize(); initStars(); initDust(); });
+
+        // ===================== ANTI-SELECT =====================
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
+        document.addEventListener('cut', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('dragstart', e => e.preventDefault());
 
         // Mouse
         let mx = w / 2, my = h / 2, smx = mx, smy = my;
