@@ -4,286 +4,655 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOYUL</title>
+    <meta name="description" content="별들 사이의 메시지">
+    <title>SOYUL ✦</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 40%, #2d1b69 70%, #0a0a1a 100%);
-            font-family: 'Noto Sans KR', sans-serif;
+        html, body {
+            width: 100%; height: 100%;
             overflow: hidden;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #000;
+            cursor: crosshair;
+        }
+
+        canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
+        #galaxy { z-index: 0; }
+        #fx-layer { z-index: 2; pointer-events: none; }
+
+        /* ===== COUNTDOWN ===== */
+        #countdown-overlay {
+            position: fixed; inset: 0; z-index: 20;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        #countdown-overlay.gone { opacity: 0; pointer-events: none; }
+
+        .cd-ring {
             position: relative;
+            width: clamp(160px, 30vw, 260px);
+            height: clamp(160px, 30vw, 260px);
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* Animated background particles */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(2px 2px at 40% 70%, rgba(255, 255, 255, 0.2), transparent),
-                radial-gradient(2px 2px at 60% 20%, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(2px 2px at 80% 50%, rgba(255, 255, 255, 0.15), transparent),
-                radial-gradient(1px 1px at 10% 80%, rgba(255, 255, 255, 0.25), transparent),
-                radial-gradient(1px 1px at 70% 90%, rgba(255, 255, 255, 0.2), transparent),
-                radial-gradient(1px 1px at 90% 10%, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.15), transparent);
-            animation: twinkle 4s ease-in-out infinite alternate;
-            z-index: 0;
+        .cd-ring svg {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            transform: rotate(-90deg);
         }
 
-        @keyframes twinkle {
-            0% {
-                opacity: 0.5;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Floating orbs */
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 8s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .orb-1 {
-            width: 300px;
-            height: 300px;
-            background: #7c3aed;
-            top: -100px;
-            right: -50px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 250px;
-            height: 250px;
-            background: #2563eb;
-            bottom: -80px;
-            left: -60px;
-            animation-delay: -3s;
-        }
-
-        .orb-3 {
-            width: 200px;
-            height: 200px;
-            background: #ec4899;
-            top: 50%;
-            left: 50%;
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) scale(1);
-            }
-
-            50% {
-                transform: translateY(-30px) scale(1.05);
-            }
-        }
-
-        .container {
-            text-align: center;
-            padding: 3rem 2rem;
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-        }
-
-        /* Icon */
-        .icon-wrapper {
-            margin-bottom: 2.5rem;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow:
-                0 8px 32px rgba(124, 58, 237, 0.3),
-                inset 0 0 20px rgba(255, 255, 255, 0.05);
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .icon svg {
-            width: 40px;
-            height: 40px;
-            stroke: rgba(255, 255, 255, 0.85);
+        .cd-ring-track { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 2; }
+        .cd-ring-progress {
             fill: none;
-            stroke-width: 1.5;
+            stroke: url(#ring-grad);
+            stroke-width: 2.5;
             stroke-linecap: round;
-            stroke-linejoin: round;
+            stroke-dasharray: 753;
+            stroke-dashoffset: 753;
+            transition: stroke-dashoffset 1s linear;
+            filter: drop-shadow(0 0 8px rgba(120,180,255,0.5));
         }
 
-        @keyframes pulse {
-
-            0%,
-            100% {
-                box-shadow:
-                    0 8px 32px rgba(124, 58, 237, 0.3),
-                    inset 0 0 20px rgba(255, 255, 255, 0.05);
-            }
-
-            50% {
-                box-shadow:
-                    0 8px 48px rgba(124, 58, 237, 0.5),
-                    inset 0 0 30px rgba(255, 255, 255, 0.08);
-            }
-        }
-
-        /* Main message */
-        .message-primary {
-            font-size: 1.65rem;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
-            letter-spacing: -0.02em;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .message-secondary {
-            font-size: 1.15rem;
+        .cd-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: -0.04em;
+            transition: all 0.25s cubic-bezier(.175,.885,.32,1.275);
+            user-select: none;
         }
+        .cd-num.tick { transform: scale(1.15); color: #fff; }
 
-        /* Divider */
-        .divider {
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.8), transparent);
-            margin: 2rem auto;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        /* Footer hint */
-        .hint {
-            margin-top: 3rem;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 0.15em;
+        .cd-label {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.25);
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            animation: fadeInUp 1s ease-out 0.9s both;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Brand name */
-        .brand-name {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            background: linear-gradient(135deg, #a78bfa, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* ===== MAIN ===== */
+        #main-content {
+            position: fixed; inset: 0; z-index: 5;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 1.5s cubic-bezier(.4,0,.2,1);
+            pointer-events: none;
+        }
+        #main-content.on { opacity: 1; pointer-events: auto; }
+
+        .main-tag {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.5em;
+            color: rgba(120,180,255,0.5);
+            text-transform: uppercase;
             margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease-out;
+            opacity: 0; transform: translateY(10px);
+        }
+        .main-tag.in { animation: slideUp .8s ease forwards; }
+
+        .main-title {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 100;
+            color: #fff;
+            letter-spacing: 0.08em;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            opacity: 0; transform: translateY(20px);
+        }
+        .main-title.in { animation: slideUp 1s ease .2s forwards; }
+
+        .main-line {
+            width: 40px; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(120,180,255,0.4), transparent);
+            margin: 2rem 0;
+            opacity: 0; transform: scaleX(0);
+        }
+        .main-line.in { animation: lineIn .6s ease .5s forwards; }
+
+        .msg-block {
+            text-align: center;
+            max-width: 500px;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .msg {
+            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.4);
+            line-height: 2.2;
+            opacity: 0; transform: translateY(12px);
+        }
+        .msg.in { animation: slideUp .7s ease forwards; }
+        .msg.em {
+            color: rgba(255,255,255,0.65);
+            font-weight: 400;
+            margin-top: 1rem;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        .end-mark {
+            margin-top: 3rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.6em;
+            color: rgba(255,255,255,0.12);
+            opacity: 0;
+        }
+        .end-mark.in { animation: fadeIn 1s ease 3s forwards; }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes lineIn {
+            to { opacity: 1; transform: scaleX(1); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            .message-primary {
-                font-size: 1.3rem;
-            }
-
-            .message-secondary {
-                font-size: 1rem;
-            }
-
-            .container {
-                padding: 2rem 1.5rem;
-            }
+        /* ===== CURSOR GLOW ===== */
+        .cursor-glow {
+            position: fixed;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle, rgba(80,140,255,0.06) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
         }
     </style>
 </head>
 
 <body>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <canvas id="galaxy"></canvas>
+    <canvas id="fx-layer"></canvas>
+    <div class="cursor-glow" id="cursor-glow"></div>
 
-    <div class="container">
-        <h1 class="brand-name">KangT</h1>
-
-        <div class="icon-wrapper">
-            <div class="icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                </svg>
-            </div>
+    <!-- Countdown -->
+    <div id="countdown-overlay">
+        <div class="cd-ring">
+            <svg viewBox="0 0 240 240">
+                <defs>
+                    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4facfe"/>
+                        <stop offset="50%" stop-color="#a78bfa"/>
+                        <stop offset="100%" stop-color="#f093fb"/>
+                    </linearGradient>
+                </defs>
+                <circle class="cd-ring-track" cx="120" cy="120" r="116"/>
+                <circle class="cd-ring-progress" id="ring-progress" cx="120" cy="120" r="116"/>
+            </svg>
+            <span class="cd-num" id="cd-num">3</span>
         </div>
-
-        <p class="message-primary">
-            웹사이트는 만들어진 목적을 다했습니다.
-        </p>
-
-        <div class="divider"></div>
-
-        <p class="message-secondary">
-            다음에 재미있는 것들을 기대해 주세요.
-        </p>
-
-        <p class="hint">Coming Soon</p>
+        <p class="cd-label">initializing</p>
     </div>
+
+    <!-- Main -->
+    <div id="main-content">
+        <div class="main-tag" id="tag">FROM THE STARS</div>
+        <h1 class="main-title" id="title">나는 너를 기다릴게</h1>
+        <div class="main-line" id="line"></div>
+        <div class="msg-block" id="msg-block">
+            <p class="msg" data-d="700">별이 지고 또 떠오를 때까지</p>
+            <p class="msg" data-d="1000">이 자리에서 변하지 않을게</p>
+            <p class="msg" data-d="1300">시간이 흘러도 잊지 않을게</p>
+            <p class="msg em" data-d="1800">언제까지든 — 기다릴게.</p>
+        </div>
+        <div class="end-mark" id="end-mark">✦</div>
+    </div>
+
+    <script>
+    (() => {
+        'use strict';
+
+        // ===================== UTILS =====================
+        const lerp = (a, b, t) => a + (b - a) * t;
+        const rand = (min, max) => Math.random() * (max - min) + min;
+        const TAU = Math.PI * 2;
+        const { innerWidth: W, innerHeight: H } = window;
+
+        // ===================== GALAXY CANVAS =====================
+        const gc = document.getElementById('galaxy');
+        const gx = gc.getContext('2d');
+        const fc = document.getElementById('fx-layer');
+        const fx = fc.getContext('2d');
+
+        let w, h;
+        function resize() {
+            w = gc.width = fc.width = window.innerWidth;
+            h = gc.height = fc.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', () => { resize(); initStars(); initDust(); });
+
+        // Mouse
+        let mx = w / 2, my = h / 2, smx = mx, smy = my;
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+        // ===================== STAR LAYERS =====================
+        const LAYERS = 4;
+        const STARS_PER_LAYER = [400, 250, 150, 60];
+        let starLayers = [];
+
+        function initStars() {
+            starLayers = [];
+            for (let l = 0; l < LAYERS; l++) {
+                const layer = [];
+                const count = STARS_PER_LAYER[l];
+                for (let i = 0; i < count; i++) {
+                    const hue = rand(200, 280);
+                    const sat = l === 0 ? rand(0, 20) : rand(30, 80);
+                    const lum = rand(70, 100);
+                    layer.push({
+                        x: rand(0, w), y: rand(0, h),
+                        r: l === 3 ? rand(1.5, 3.5) : rand(0.3, 1.2 + l * 0.4),
+                        phase: rand(0, TAU),
+                        speed: rand(0.003, 0.015),
+                        hue, sat, lum,
+                        depth: (l + 1) / LAYERS
+                    });
+                }
+                starLayers.push(layer);
+            }
+        }
+        initStars();
+
+        // ===================== COSMIC DUST / NEBULA PARTICLES =====================
+        let dustParticles = [];
+        const DUST_COUNT = 120;
+
+        function initDust() {
+            dustParticles = [];
+            for (let i = 0; i < DUST_COUNT; i++) {
+                dustParticles.push({
+                    x: rand(0, w), y: rand(0, h),
+                    vx: rand(-0.15, 0.15), vy: rand(-0.1, 0.1),
+                    r: rand(30, 120),
+                    hue: rand(210, 300),
+                    alpha: rand(0.008, 0.03),
+                    phase: rand(0, TAU),
+                    drift: rand(0.001, 0.004)
+                });
+            }
+        }
+        initDust();
+
+        // ===================== CONSTELLATION LINES =====================
+        // Connect nearby bright stars with faint lines
+        function drawConstellations(t) {
+            const bright = starLayers[3]; // brightest layer
+            gx.strokeStyle = 'rgba(100,160,255,0.04)';
+            gx.lineWidth = 0.5;
+            for (let i = 0; i < bright.length; i++) {
+                for (let j = i + 1; j < bright.length; j++) {
+                    const dx = bright[i]._sx - bright[j]._sx;
+                    const dy = bright[i]._sy - bright[j]._sy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 180 && dist > 40) {
+                        const a = 0.04 * (1 - dist / 180) * (0.5 + 0.5 * Math.sin(t * 0.5 + i));
+                        gx.strokeStyle = `rgba(100,160,255,${a})`;
+                        gx.beginPath();
+                        gx.moveTo(bright[i]._sx, bright[i]._sy);
+                        gx.lineTo(bright[j]._sx, bright[j]._sy);
+                        gx.stroke();
+                    }
+                }
+            }
+        }
+
+        // ===================== WARP STREAKS =====================
+        let warpActive = false;
+        let warpStreaks = [];
+        const WARP_COUNT = 300;
+
+        function initWarp() {
+            warpStreaks = [];
+            const cx = w / 2, cy = h / 2;
+            for (let i = 0; i < WARP_COUNT; i++) {
+                const angle = rand(0, TAU);
+                const dist = rand(5, 30);
+                warpStreaks.push({
+                    x: cx + Math.cos(angle) * dist,
+                    y: cy + Math.sin(angle) * dist,
+                    angle,
+                    speed: rand(8, 25),
+                    len: rand(20, 100),
+                    hue: rand(200, 320),
+                    alpha: rand(0.3, 0.9),
+                    born: 0
+                });
+            }
+        }
+
+        function drawWarp(t, progress) {
+            // progress: 0 to 1
+            fx.globalCompositeOperation = 'lighter';
+            warpStreaks.forEach(s => {
+                const dist = s.speed * progress * 40;
+                const ex = s.x + Math.cos(s.angle) * dist;
+                const ey = s.y + Math.sin(s.angle) * dist;
+                const len = s.len * progress;
+
+                const sx = ex - Math.cos(s.angle) * len;
+                const sy = ey - Math.sin(s.angle) * len;
+
+                const grad = fx.createLinearGradient(sx, sy, ex, ey);
+                grad.addColorStop(0, `hsla(${s.hue},80%,80%,0)`);
+                grad.addColorStop(0.5, `hsla(${s.hue},80%,85%,${s.alpha * progress})`);
+                grad.addColorStop(1, `hsla(${s.hue},60%,95%,${s.alpha * progress * 0.5})`);
+
+                fx.strokeStyle = grad;
+                fx.lineWidth = rand(0.5, 2);
+                fx.beginPath();
+                fx.moveTo(sx, sy);
+                fx.lineTo(ex, ey);
+                fx.stroke();
+            });
+            fx.globalCompositeOperation = 'source-over';
+        }
+
+        // ===================== EXPLOSION PARTICLES =====================
+        let expParticles = [];
+
+        class Particle {
+            constructor(x, y, type) {
+                this.x = x; this.y = y;
+                const a = rand(0, TAU);
+                const spd = type === 'ring' ? rand(6, 10) : rand(2, 18);
+                this.vx = Math.cos(a) * spd;
+                this.vy = Math.sin(a) * spd;
+                this.life = 1;
+                this.decay = rand(0.006, 0.02);
+                this.r = rand(0.8, 3);
+                this.hue = rand(200, 320);
+                this.sat = rand(40, 90);
+                this.grav = 0.02;
+            }
+            update() {
+                this.vx *= 0.985; this.vy *= 0.985;
+                this.vy += this.grav;
+                this.x += this.vx; this.y += this.vy;
+                this.life -= this.decay;
+            }
+            draw(ctx) {
+                if (this.life <= 0) return;
+                const a = this.life;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r * a, 0, TAU);
+                ctx.fillStyle = `hsla(${this.hue},${this.sat}%,75%,${a})`;
+                ctx.fill();
+                // glow
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r * 4 * a, 0, TAU);
+                ctx.fillStyle = `hsla(${this.hue},${this.sat}%,80%,${a * 0.1})`;
+                ctx.fill();
+            }
+        }
+
+        function triggerExplosion() {
+            const cx = w / 2, cy = h / 2;
+            for (let i = 0; i < 250; i++) expParticles.push(new Particle(cx, cy, 'burst'));
+            setTimeout(() => {
+                for (let i = 0; i < 120; i++) {
+                    const p = new Particle(cx, cy, 'ring');
+                    const a = (i / 120) * TAU;
+                    p.vx = Math.cos(a) * rand(7, 12);
+                    p.vy = Math.sin(a) * rand(7, 12);
+                    p.hue = 220;
+                    expParticles.push(p);
+                }
+            }, 150);
+            setTimeout(() => {
+                for (let i = 0; i < 80; i++) {
+                    const p = new Particle(cx, cy, 'ring');
+                    const a = (i / 80) * TAU;
+                    p.vx = Math.cos(a) * rand(4, 6);
+                    p.vy = Math.sin(a) * rand(4, 6);
+                    p.hue = 280;
+                    expParticles.push(p);
+                }
+            }, 350);
+
+            // White flash
+            fx.fillStyle = 'rgba(255,255,255,0.25)';
+            fx.fillRect(0, 0, w, h);
+        }
+
+        // ===================== RENDER LOOP =====================
+        let t = 0;
+        let galaxyAngle = 0;
+
+        function renderGalaxy() {
+            t += 0.016;
+            smx = lerp(smx, mx, 0.04);
+            smy = lerp(smy, my, 0.04);
+
+            const offX = (smx - w / 2) / w;
+            const offY = (smy - h / 2) / h;
+
+            gx.fillStyle = '#000';
+            gx.fillRect(0, 0, w, h);
+
+            // === Nebula dust ===
+            dustParticles.forEach(d => {
+                d.x += d.vx + Math.sin(t * d.drift) * 0.3;
+                d.y += d.vy + Math.cos(t * d.drift) * 0.2;
+                // wrap
+                if (d.x < -d.r) d.x = w + d.r;
+                if (d.x > w + d.r) d.x = -d.r;
+                if (d.y < -d.r) d.y = h + d.r;
+                if (d.y > h + d.r) d.y = -d.r;
+
+                const px = d.x + offX * 15;
+                const py = d.y + offY * 15;
+                const pulse = d.alpha * (0.7 + 0.3 * Math.sin(t + d.phase));
+
+                const g = gx.createRadialGradient(px, py, 0, px, py, d.r);
+                g.addColorStop(0, `hsla(${d.hue},60%,50%,${pulse})`);
+                g.addColorStop(0.5, `hsla(${d.hue + 20},40%,30%,${pulse * 0.4})`);
+                g.addColorStop(1, 'transparent');
+                gx.fillStyle = g;
+                gx.fillRect(px - d.r, py - d.r, d.r * 2, d.r * 2);
+            });
+
+            // === Galaxy spiral hint ===
+            galaxyAngle += 0.0003;
+            gx.save();
+            gx.translate(w * 0.5 + offX * 30, h * 0.5 + offY * 30);
+            gx.rotate(galaxyAngle);
+            const spiralGrad = gx.createRadialGradient(0, 0, 0, 0, 0, Math.min(w, h) * 0.5);
+            spiralGrad.addColorStop(0, 'rgba(100,120,200,0.04)');
+            spiralGrad.addColorStop(0.3, 'rgba(80,60,160,0.02)');
+            spiralGrad.addColorStop(0.6, 'rgba(60,30,120,0.01)');
+            spiralGrad.addColorStop(1, 'transparent');
+            gx.fillStyle = spiralGrad;
+            gx.fillRect(-w, -h, w * 2, h * 2);
+            gx.restore();
+
+            // === Stars ===
+            for (let l = 0; l < LAYERS; l++) {
+                const parallax = (l + 1) * 12;
+                starLayers[l].forEach(s => {
+                    const px = s.x + offX * parallax;
+                    const py = s.y + offY * parallax;
+                    // wrap
+                    const sx = ((px % w) + w) % w;
+                    const sy = ((py % h) + h) % h;
+                    s._sx = sx; s._sy = sy;
+
+                    const flicker = 0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase);
+                    const alpha = flicker * (0.3 + s.depth * 0.6);
+                    const size = s.r * (0.8 + 0.2 * flicker);
+
+                    gx.beginPath();
+                    gx.arc(sx, sy, size, 0, TAU);
+                    gx.fillStyle = `hsla(${s.hue},${s.sat}%,${s.lum}%,${alpha})`;
+                    gx.fill();
+
+                    // Cross spikes on bright stars
+                    if (s.r > 2) {
+                        const spikeLen = s.r * 6 * flicker;
+                        const spikeA = alpha * 0.3;
+                        gx.strokeStyle = `hsla(${s.hue},${s.sat}%,${s.lum}%,${spikeA})`;
+                        gx.lineWidth = 0.5;
+                        gx.beginPath();
+                        gx.moveTo(sx - spikeLen, sy); gx.lineTo(sx + spikeLen, sy);
+                        gx.moveTo(sx, sy - spikeLen); gx.lineTo(sx, sy + spikeLen);
+                        gx.stroke();
+
+                        // Halo
+                        const hg = gx.createRadialGradient(sx, sy, 0, sx, sy, s.r * 5);
+                        hg.addColorStop(0, `hsla(${s.hue},${s.sat}%,${s.lum}%,${alpha * 0.2})`);
+                        hg.addColorStop(1, 'transparent');
+                        gx.fillStyle = hg;
+                        gx.beginPath();
+                        gx.arc(sx, sy, s.r * 5, 0, TAU);
+                        gx.fill();
+                    }
+                });
+            }
+
+            drawConstellations(t);
+
+            // === FX Layer ===
+            fx.clearRect(0, 0, w, h);
+
+            // Warp
+            if (warpActive) {
+                const wp = Math.min(1, (t - warpStart) / 1.2);
+                drawWarp(t, wp);
+                if (wp >= 1 && !warpDone) {
+                    warpDone = true;
+                    warpActive = false;
+                    triggerExplosion();
+                    setTimeout(showContent, 600);
+                }
+            }
+
+            // Explosion particles
+            expParticles = expParticles.filter(p => p.life > 0);
+            expParticles.forEach(p => { p.update(); p.draw(fx); });
+
+            // Cursor glow
+            const cg = document.getElementById('cursor-glow');
+            cg.style.left = smx + 'px';
+            cg.style.top = smy + 'px';
+
+            requestAnimationFrame(renderGalaxy);
+        }
+        renderGalaxy();
+
+        // ===================== COUNTDOWN =====================
+        const overlay = document.getElementById('countdown-overlay');
+        const cdNum = document.getElementById('cd-num');
+        const ringProg = document.getElementById('ring-progress');
+        const circumference = 2 * Math.PI * 116;
+        let count = 3;
+
+        function tickCountdown() {
+            cdNum.classList.remove('tick');
+            void cdNum.offsetWidth;
+            cdNum.classList.add('tick');
+
+            // Progress ring
+            const progress = (3 - count) / 3;
+            ringProg.style.strokeDashoffset = circumference * (1 - progress);
+
+            if (count > 0) {
+                cdNum.textContent = count;
+                count--;
+                setTimeout(tickCountdown, 1000);
+            } else {
+                // Complete ring
+                ringProg.style.strokeDashoffset = 0;
+                cdNum.textContent = '✦';
+                cdNum.style.fontSize = 'clamp(2rem, 6vw, 4rem)';
+                cdNum.style.color = 'rgba(120,180,255,0.8)';
+
+                setTimeout(() => {
+                    overlay.classList.add('gone');
+                    startWarp();
+                }, 400);
+            }
+        }
+
+        setTimeout(tickCountdown, 600);
+
+        // ===================== WARP SEQUENCE =====================
+        let warpStart = 0, warpDone = false;
+
+        function startWarp() {
+            initWarp();
+            warpActive = true;
+            warpStart = t;
+        }
+
+        // ===================== CONTENT REVEAL =====================
+        function showContent() {
+            const mc = document.getElementById('main-content');
+            mc.classList.add('on');
+
+            document.getElementById('tag').classList.add('in');
+            document.getElementById('title').classList.add('in');
+            document.getElementById('line').classList.add('in');
+
+            document.querySelectorAll('.msg').forEach(m => {
+                const d = parseInt(m.dataset.d) || 0;
+                setTimeout(() => m.classList.add('in'), d);
+            });
+
+            document.getElementById('end-mark').classList.add('in');
+
+            // Shooting stars at random intervals
+            setInterval(() => {
+                if (Math.random() < 0.3) spawnShootingStar();
+            }, 4000);
+        }
+
+        // ===================== SHOOTING STARS =====================
+        function spawnShootingStar() {
+            const sx = rand(0, w * 0.6);
+            const sy = rand(0, h * 0.3);
+            const angle = rand(0.3, 0.8);
+            const speed = rand(12, 22);
+            const len = rand(80, 200);
+            let life = 1;
+
+            const anim = () => {
+                if (life <= 0) return;
+                life -= 0.02;
+                const cx = sx + Math.cos(angle) * speed * (1 - life) * 60;
+                const cy = sy + Math.sin(angle) * speed * (1 - life) * 60;
+                const ex = cx - Math.cos(angle) * len * life;
+                const ey = cy - Math.sin(angle) * len * life;
+
+                const grad = gx.createLinearGradient(ex, ey, cx, cy);
+                grad.addColorStop(0, 'transparent');
+                grad.addColorStop(1, `rgba(200,220,255,${life * 0.7})`);
+                gx.strokeStyle = grad;
+                gx.lineWidth = 1;
+                gx.beginPath();
+                gx.moveTo(ex, ey);
+                gx.lineTo(cx, cy);
+                gx.stroke();
+
+                requestAnimationFrame(anim);
+            };
+            anim();
+        }
+
+    })();
+    </script>
 </body>
 
 </html>
