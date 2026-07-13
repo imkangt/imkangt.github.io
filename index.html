@@ -1,674 +1,283 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="ko" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="별들 사이의 메시지">
-    <title>SOYUL ✦</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-touch-callout: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            width: 100%; height: 100%;
-            overflow: hidden;
-            font-family: 'Noto Sans KR', sans-serif;
-            background: #000;
-            cursor: crosshair;
-            -webkit-user-drag: none;
-        }
-
-        canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
-        #galaxy { z-index: 0; }
-        #fx-layer { z-index: 2; pointer-events: none; }
-
-        /* ===== COUNTDOWN ===== */
-        #countdown-overlay {
-            position: fixed; inset: 0; z-index: 20;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
-        }
-        #countdown-overlay.gone { opacity: 0; pointer-events: none; }
-
-        .cd-ring {
-            position: relative;
-            width: clamp(160px, 30vw, 260px);
-            height: clamp(160px, 30vw, 260px);
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        .cd-ring svg {
-            position: absolute; inset: 0;
-            width: 100%; height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .cd-ring-track { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 2; }
-        .cd-ring-progress {
-            fill: none;
-            stroke: url(#ring-grad);
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-dasharray: 753;
-            stroke-dashoffset: 753;
-            transition: stroke-dashoffset 1s linear;
-            filter: drop-shadow(0 0 8px rgba(120,180,255,0.5));
-        }
-
-        .cd-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 300;
-            color: rgba(255,255,255,0.9);
-            letter-spacing: -0.04em;
-            transition: all 0.25s cubic-bezier(.175,.885,.32,1.275);
-            user-select: none;
-        }
-        .cd-num.tick { transform: scale(1.15); color: #fff; }
-
-        .cd-label {
-            margin-top: 1.5rem;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.25);
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* ===== MAIN ===== */
-        #main-content {
-            position: fixed; inset: 0; z-index: 5;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 1.5s cubic-bezier(.4,0,.2,1);
-            pointer-events: none;
-        }
-        #main-content.on { opacity: 1; pointer-events: auto; }
-
-        .main-tag {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.5em;
-            color: rgba(120,180,255,0.5);
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            opacity: 0; transform: translateY(10px);
-        }
-        .main-tag.in { animation: slideUp .8s ease forwards; }
-
-        .main-title {
-            font-size: clamp(2rem, 6vw, 4rem);
-            font-weight: 100;
-            color: #fff;
-            letter-spacing: 0.08em;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            opacity: 0; transform: translateY(20px);
-        }
-        .main-title.in { animation: slideUp 1s ease .2s forwards; }
-
-        .main-line {
-            width: 40px; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(120,180,255,0.4), transparent);
-            margin: 2rem 0;
-            opacity: 0; transform: scaleX(0);
-        }
-        .main-line.in { animation: lineIn .6s ease .5s forwards; }
-
-        .msg-block {
-            text-align: center;
-            max-width: 500px;
-        }
-
-        .msg {
-            font-size: clamp(0.85rem, 2.2vw, 1.05rem);
-            font-weight: 300;
-            color: rgba(255,255,255,0.4);
-            line-height: 2.2;
-            opacity: 0; transform: translateY(12px);
-        }
-        .msg.in { animation: slideUp .7s ease forwards; }
-        .msg.em {
-            color: rgba(255,255,255,0.65);
-            font-weight: 400;
-            margin-top: 1rem;
-        }
-
-        .end-mark {
-            margin-top: 3rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.6em;
-            color: rgba(255,255,255,0.12);
-            opacity: 0;
-        }
-        .end-mark.in { animation: fadeIn 1s ease 3s forwards; }
-
-        @keyframes slideUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes lineIn {
-            to { opacity: 1; transform: scaleX(1); }
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* ===== CURSOR GLOW ===== */
-        .cursor-glow {
-            position: fixed;
-            width: 300px; height: 300px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            background: radial-gradient(circle, rgba(80,140,255,0.06) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="특별한 데이트 확인 페이지 💕 사랑하는 사람과의 만남을 확정하세요">
+  <title>💕 우리 만날까? - SOYOL</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
 </head>
-
 <body>
-    <canvas id="galaxy"></canvas>
-    <canvas id="fx-layer"></canvas>
-    <div class="cursor-glow" id="cursor-glow"></div>
 
-    <!-- Countdown -->
-    <div id="countdown-overlay">
-        <div class="cd-ring">
-            <svg viewBox="0 0 240 240">
-                <defs>
-                    <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#4facfe"/>
-                        <stop offset="50%" stop-color="#a78bfa"/>
-                        <stop offset="100%" stop-color="#f093fb"/>
-                    </linearGradient>
-                </defs>
-                <circle class="cd-ring-track" cx="120" cy="120" r="116"/>
-                <circle class="cd-ring-progress" id="ring-progress" cx="120" cy="120" r="116"/>
-            </svg>
-            <span class="cd-num" id="cd-num">3</span>
+  <!-- Background Decoration -->
+  <div class="bg-decoration">
+    <div class="bg-blob"></div>
+    <div class="bg-blob"></div>
+    <div class="bg-blob"></div>
+  </div>
+
+  <!-- Floating Hearts -->
+  <div class="floating-hearts"></div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" style="width: 25%"></div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="theme-toggle" aria-label="테마 변경">
+    <span class="icon-sun">☀️</span>
+    <span class="icon-moon">🌙</span>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast"></div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+
+    <!-- ═══════════════════════════════════════
+         Section 1: The Question
+         ═══════════════════════════════════════ -->
+    <div class="section active" id="section-1">
+      <div class="card question-section">
+        <div class="couple-emoji">💑</div>
+        <h1 class="question-title">오빠를 만나고 싶어? 💕</h1>
+        <p class="question-subtitle">솔직하게 대답해줘~ 🥺</p>
+
+        <div class="cute-message">
+          너를 보고 싶어서 이 페이지를 만들었어... 💌
         </div>
-        <p class="cd-label">initializing</p>
+
+        <div class="buttons-container" id="buttons-container">
+          <button class="btn btn-yes" id="btn-yes">응! 💖</button>
+          <button class="btn btn-no" id="btn-no">아니... 😢</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Main -->
-    <div id="main-content">
-        <div class="main-tag" id="tag">FROM THE STARS</div>
-        <h1 class="main-title" id="title">나는 너를 기다릴게</h1>
-        <div class="main-line" id="line"></div>
-        <div class="msg-block" id="msg-block">
-            <p class="msg" data-d="700">별이 지고 또 떠오를 때까지</p>
-            <p class="msg" data-d="1000">이 자리에서 변하지 않을게</p>
-            <p class="msg" data-d="1300">시간이 흘러도 잊지 않을게</p>
-            <p class="msg em" data-d="1800">언제까지든 — 기다릴게.</p>
+    <!-- ═══════════════════════════════════════
+         Section 2: Date & Activity Selection
+         ═══════════════════════════════════════ -->
+    <div class="section" id="section-2">
+      <!-- Step Indicator -->
+      <div class="step-indicator">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+
+      <div class="card selection-card">
+        <div class="section-label">📅 STEP 1</div>
+        <h2 class="section-heading">언제 만날까? 🗓️</h2>
+
+        <div class="datetime-row">
+          <div class="form-group">
+            <label class="form-label" for="date-input">
+              📅 날짜
+            </label>
+            <input type="date" class="form-input" id="date-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="time-input">
+              ⏰ 시간
+            </label>
+            <input type="time" class="form-input" id="time-input">
+          </div>
         </div>
-        <div class="end-mark" id="end-mark">✦</div>
+
+        <div class="form-group">
+          <label class="form-label">🎯 뭐 하고 싶어?</label>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">여러 개 선택할 수 있어!</p>
+
+          <div class="activity-grid">
+            <div class="activity-chip" data-activity="olive-young">
+              <span class="chip-icon">🛍️</span>
+              <span>올리브영</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="clothes">
+              <span class="chip-icon">👗</span>
+              <span>옷 쇼핑</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="food">
+              <span class="chip-icon">🍽️</span>
+              <span>맛있는 거 먹기</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="movie">
+              <span class="chip-icon">🎬</span>
+              <span>영화 보기</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="cafe">
+              <span class="chip-icon">☕</span>
+              <span>카페 가기</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="walk">
+              <span class="chip-icon">🚶‍♀️</span>
+              <span>산책하기</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="karaoke">
+              <span class="chip-icon">🎤</span>
+              <span>노래방</span>
+              <span class="chip-check">✓</span>
+            </div>
+            <div class="activity-chip" data-activity="photo">
+              <span class="chip-icon">📸</span>
+              <span>사진 찍기</span>
+              <span class="chip-check">✓</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn-nav btn-next" id="btn-next-2" disabled onclick="goToSection(3)">
+            다음으로 ➜
+          </button>
+        </div>
+      </div>
     </div>
 
-    <script>
-    (() => {
-        'use strict';
+    <!-- ═══════════════════════════════════════
+         Section 3: Message
+         ═══════════════════════════════════════ -->
+    <div class="section" id="section-3">
+      <!-- Step Indicator -->
+      <div class="step-indicator">
+        <div class="step-dot done"></div>
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+      </div>
 
-        // ===================== UTILS =====================
-        const lerp = (a, b, t) => a + (b - a) * t;
-        const rand = (min, max) => Math.random() * (max - min) + min;
-        const TAU = Math.PI * 2;
-        const { innerWidth: W, innerHeight: H } = window;
+      <div class="card">
+        <div class="section-label">💌 STEP 2</div>
+        <h2 class="section-heading">하고 싶은 말 있어? 💬</h2>
 
-        // ===================== GALAXY CANVAS =====================
-        const gc = document.getElementById('galaxy');
-        const gx = gc.getContext('2d');
-        const fc = document.getElementById('fx-layer');
-        const fx = fc.getContext('2d');
+        <div class="cute-message">
+          자유롭게 적어줘~ 뭐든 좋아! 😊
+        </div>
 
-        let w, h;
-        function resize() {
-            w = gc.width = fc.width = window.innerWidth;
-            h = gc.height = fc.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', () => { resize(); initStars(); initDust(); });
+        <div class="form-group">
+          <textarea
+            class="message-textarea"
+            id="message-input"
+            placeholder="예: 오빠 빨리 만나고 싶어~ 💕&#10;맛있는 거 사줘! 🍕"
+            maxlength="500"
+          ></textarea>
+          <div class="char-count">0 / 500</div>
+        </div>
 
-        // ===================== ANTI-SELECT =====================
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('copy', e => e.preventDefault());
-        document.addEventListener('cut', e => e.preventDefault());
-        document.addEventListener('selectstart', e => e.preventDefault());
-        document.addEventListener('dragstart', e => e.preventDefault());
+        <div class="nav-buttons">
+          <button class="btn-nav btn-back" onclick="goToSection(2)">
+            ← 이전
+          </button>
+          <button class="btn-nav btn-next" onclick="goToSummary()">
+            확인하기 ✨
+          </button>
+        </div>
+      </div>
+    </div>
 
-        // Mouse
-        let mx = w / 2, my = h / 2, smx = mx, smy = my;
-        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    <!-- ═══════════════════════════════════════
+         Section 4: Summary & Send
+         ═══════════════════════════════════════ -->
+    <div class="section" id="section-4">
+      <!-- Step Indicator -->
+      <div class="step-indicator">
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot active"></div>
+      </div>
 
-        // ===================== STAR LAYERS =====================
-        const LAYERS = 4;
-        const STARS_PER_LAYER = [400, 250, 150, 60];
-        let starLayers = [];
+      <div class="card summary-card">
+        <div class="section-label">📋 확인</div>
+        <h2 class="section-heading">이렇게 보낼까? 💕</h2>
 
-        function initStars() {
-            starLayers = [];
-            for (let l = 0; l < LAYERS; l++) {
-                const layer = [];
-                const count = STARS_PER_LAYER[l];
-                for (let i = 0; i < count; i++) {
-                    const hue = rand(200, 280);
-                    const sat = l === 0 ? rand(0, 20) : rand(30, 80);
-                    const lum = rand(70, 100);
-                    layer.push({
-                        x: rand(0, w), y: rand(0, h),
-                        r: l === 3 ? rand(1.5, 3.5) : rand(0.3, 1.2 + l * 0.4),
-                        phase: rand(0, TAU),
-                        speed: rand(0.003, 0.015),
-                        hue, sat, lum,
-                        depth: (l + 1) / LAYERS
-                    });
-                }
-                starLayers.push(layer);
-            }
-        }
-        initStars();
+        <div class="summary-item">
+          <span class="summary-icon">📅</span>
+          <div class="summary-content">
+            <div class="summary-label">날짜</div>
+            <div class="summary-value" id="summary-date">-</div>
+          </div>
+        </div>
 
-        // ===================== COSMIC DUST / NEBULA PARTICLES =====================
-        let dustParticles = [];
-        const DUST_COUNT = 120;
+        <div class="summary-item">
+          <span class="summary-icon">⏰</span>
+          <div class="summary-content">
+            <div class="summary-label">시간</div>
+            <div class="summary-value" id="summary-time">-</div>
+          </div>
+        </div>
 
-        function initDust() {
-            dustParticles = [];
-            for (let i = 0; i < DUST_COUNT; i++) {
-                dustParticles.push({
-                    x: rand(0, w), y: rand(0, h),
-                    vx: rand(-0.15, 0.15), vy: rand(-0.1, 0.1),
-                    r: rand(30, 120),
-                    hue: rand(210, 300),
-                    alpha: rand(0.008, 0.03),
-                    phase: rand(0, TAU),
-                    drift: rand(0.001, 0.004)
-                });
-            }
-        }
-        initDust();
+        <div class="summary-item">
+          <span class="summary-icon">🎯</span>
+          <div class="summary-content">
+            <div class="summary-label">하고 싶은 것</div>
+            <div class="summary-activities" id="summary-activities"></div>
+          </div>
+        </div>
 
-        // ===================== CONSTELLATION LINES =====================
-        // Connect nearby bright stars with faint lines
-        function drawConstellations(t) {
-            const bright = starLayers[3]; // brightest layer
-            gx.strokeStyle = 'rgba(100,160,255,0.04)';
-            gx.lineWidth = 0.5;
-            for (let i = 0; i < bright.length; i++) {
-                for (let j = i + 1; j < bright.length; j++) {
-                    const dx = bright[i]._sx - bright[j]._sx;
-                    const dy = bright[i]._sy - bright[j]._sy;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 180 && dist > 40) {
-                        const a = 0.04 * (1 - dist / 180) * (0.5 + 0.5 * Math.sin(t * 0.5 + i));
-                        gx.strokeStyle = `rgba(100,160,255,${a})`;
-                        gx.beginPath();
-                        gx.moveTo(bright[i]._sx, bright[i]._sy);
-                        gx.lineTo(bright[j]._sx, bright[j]._sy);
-                        gx.stroke();
-                    }
-                }
-            }
-        }
+        <div class="summary-item">
+          <span class="summary-icon">💌</span>
+          <div class="summary-content">
+            <div class="summary-label">메시지</div>
+            <div class="summary-value" id="summary-message">-</div>
+          </div>
+        </div>
+      </div>
 
-        // ===================== WARP STREAKS =====================
-        let warpActive = false;
-        let warpStreaks = [];
-        const WARP_COUNT = 300;
+      <!-- Send Options -->
+      <div class="send-options">
+        <button class="btn-send btn-email" onclick="sendEmail()">
+          <span class="send-icon">📧</span>
+          이메일로 보내기
+        </button>
+        <button class="btn-send btn-sms" onclick="sendSMS()">
+          <span class="send-icon">💬</span>
+          문자로 보내기
+        </button>
+        <button class="btn-send btn-kakao" onclick="sendKakao()">
+          <span class="send-icon">💛</span>
+          카카오톡으로 공유
+        </button>
+        <button class="btn-send btn-share" onclick="shareGeneral()">
+          <span class="send-icon">📤</span>
+          다른 앱으로 공유
+        </button>
+      </div>
 
-        function initWarp() {
-            warpStreaks = [];
-            const cx = w / 2, cy = h / 2;
-            for (let i = 0; i < WARP_COUNT; i++) {
-                const angle = rand(0, TAU);
-                const dist = rand(5, 30);
-                warpStreaks.push({
-                    x: cx + Math.cos(angle) * dist,
-                    y: cy + Math.sin(angle) * dist,
-                    angle,
-                    speed: rand(8, 25),
-                    len: rand(20, 100),
-                    hue: rand(200, 320),
-                    alpha: rand(0.3, 0.9),
-                    born: 0
-                });
-            }
-        }
+      <div class="nav-buttons" style="margin-top: 12px;">
+        <button class="btn-nav btn-back" onclick="goToSection(3)">
+          ← 수정하기
+        </button>
+      </div>
+    </div>
 
-        function drawWarp(t, progress) {
-            // progress: 0 to 1
-            fx.globalCompositeOperation = 'lighter';
-            warpStreaks.forEach(s => {
-                const dist = s.speed * progress * 40;
-                const ex = s.x + Math.cos(s.angle) * dist;
-                const ey = s.y + Math.sin(s.angle) * dist;
-                const len = s.len * progress;
+    <!-- ═══════════════════════════════════════
+         Section 5: Success
+         ═══════════════════════════════════════ -->
+    <div class="section" id="section-5">
+      <div class="card success-section">
+        <div class="success-emoji">🎉</div>
+        <h2 class="success-title">전송 완료! 💕</h2>
+        <p class="success-subtitle">
+          고마워~ 빨리 만나자! 🥰<br>
+          기대하고 있을게~ 💖
+        </p>
+        <button class="btn-restart" onclick="restartApp()">
+          처음으로 돌아가기 🔄
+        </button>
+      </div>
+    </div>
 
-                const sx = ex - Math.cos(s.angle) * len;
-                const sy = ey - Math.sin(s.angle) * len;
+  </div>
 
-                const grad = fx.createLinearGradient(sx, sy, ex, ey);
-                grad.addColorStop(0, `hsla(${s.hue},80%,80%,0)`);
-                grad.addColorStop(0.5, `hsla(${s.hue},80%,85%,${s.alpha * progress})`);
-                grad.addColorStop(1, `hsla(${s.hue},60%,95%,${s.alpha * progress * 0.5})`);
-
-                fx.strokeStyle = grad;
-                fx.lineWidth = rand(0.5, 2);
-                fx.beginPath();
-                fx.moveTo(sx, sy);
-                fx.lineTo(ex, ey);
-                fx.stroke();
-            });
-            fx.globalCompositeOperation = 'source-over';
-        }
-
-        // ===================== EXPLOSION PARTICLES =====================
-        let expParticles = [];
-
-        class Particle {
-            constructor(x, y, type) {
-                this.x = x; this.y = y;
-                const a = rand(0, TAU);
-                const spd = type === 'ring' ? rand(6, 10) : rand(2, 18);
-                this.vx = Math.cos(a) * spd;
-                this.vy = Math.sin(a) * spd;
-                this.life = 1;
-                this.decay = rand(0.006, 0.02);
-                this.r = rand(0.8, 3);
-                this.hue = rand(200, 320);
-                this.sat = rand(40, 90);
-                this.grav = 0.02;
-            }
-            update() {
-                this.vx *= 0.985; this.vy *= 0.985;
-                this.vy += this.grav;
-                this.x += this.vx; this.y += this.vy;
-                this.life -= this.decay;
-            }
-            draw(ctx) {
-                if (this.life <= 0) return;
-                const a = this.life;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r * a, 0, TAU);
-                ctx.fillStyle = `hsla(${this.hue},${this.sat}%,75%,${a})`;
-                ctx.fill();
-                // glow
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r * 4 * a, 0, TAU);
-                ctx.fillStyle = `hsla(${this.hue},${this.sat}%,80%,${a * 0.1})`;
-                ctx.fill();
-            }
-        }
-
-        function triggerExplosion() {
-            const cx = w / 2, cy = h / 2;
-            for (let i = 0; i < 250; i++) expParticles.push(new Particle(cx, cy, 'burst'));
-            setTimeout(() => {
-                for (let i = 0; i < 120; i++) {
-                    const p = new Particle(cx, cy, 'ring');
-                    const a = (i / 120) * TAU;
-                    p.vx = Math.cos(a) * rand(7, 12);
-                    p.vy = Math.sin(a) * rand(7, 12);
-                    p.hue = 220;
-                    expParticles.push(p);
-                }
-            }, 150);
-            setTimeout(() => {
-                for (let i = 0; i < 80; i++) {
-                    const p = new Particle(cx, cy, 'ring');
-                    const a = (i / 80) * TAU;
-                    p.vx = Math.cos(a) * rand(4, 6);
-                    p.vy = Math.sin(a) * rand(4, 6);
-                    p.hue = 280;
-                    expParticles.push(p);
-                }
-            }, 350);
-
-            // White flash
-            fx.fillStyle = 'rgba(255,255,255,0.25)';
-            fx.fillRect(0, 0, w, h);
-        }
-
-        // ===================== RENDER LOOP =====================
-        let t = 0;
-        let galaxyAngle = 0;
-
-        function renderGalaxy() {
-            t += 0.016;
-            smx = lerp(smx, mx, 0.04);
-            smy = lerp(smy, my, 0.04);
-
-            const offX = (smx - w / 2) / w;
-            const offY = (smy - h / 2) / h;
-
-            gx.fillStyle = '#000';
-            gx.fillRect(0, 0, w, h);
-
-            // === Nebula dust ===
-            dustParticles.forEach(d => {
-                d.x += d.vx + Math.sin(t * d.drift) * 0.3;
-                d.y += d.vy + Math.cos(t * d.drift) * 0.2;
-                // wrap
-                if (d.x < -d.r) d.x = w + d.r;
-                if (d.x > w + d.r) d.x = -d.r;
-                if (d.y < -d.r) d.y = h + d.r;
-                if (d.y > h + d.r) d.y = -d.r;
-
-                const px = d.x + offX * 15;
-                const py = d.y + offY * 15;
-                const pulse = d.alpha * (0.7 + 0.3 * Math.sin(t + d.phase));
-
-                const g = gx.createRadialGradient(px, py, 0, px, py, d.r);
-                g.addColorStop(0, `hsla(${d.hue},60%,50%,${pulse})`);
-                g.addColorStop(0.5, `hsla(${d.hue + 20},40%,30%,${pulse * 0.4})`);
-                g.addColorStop(1, 'transparent');
-                gx.fillStyle = g;
-                gx.fillRect(px - d.r, py - d.r, d.r * 2, d.r * 2);
-            });
-
-            // === Galaxy spiral hint ===
-            galaxyAngle += 0.0003;
-            gx.save();
-            gx.translate(w * 0.5 + offX * 30, h * 0.5 + offY * 30);
-            gx.rotate(galaxyAngle);
-            const spiralGrad = gx.createRadialGradient(0, 0, 0, 0, 0, Math.min(w, h) * 0.5);
-            spiralGrad.addColorStop(0, 'rgba(100,120,200,0.04)');
-            spiralGrad.addColorStop(0.3, 'rgba(80,60,160,0.02)');
-            spiralGrad.addColorStop(0.6, 'rgba(60,30,120,0.01)');
-            spiralGrad.addColorStop(1, 'transparent');
-            gx.fillStyle = spiralGrad;
-            gx.fillRect(-w, -h, w * 2, h * 2);
-            gx.restore();
-
-            // === Stars ===
-            for (let l = 0; l < LAYERS; l++) {
-                const parallax = (l + 1) * 12;
-                starLayers[l].forEach(s => {
-                    const px = s.x + offX * parallax;
-                    const py = s.y + offY * parallax;
-                    // wrap
-                    const sx = ((px % w) + w) % w;
-                    const sy = ((py % h) + h) % h;
-                    s._sx = sx; s._sy = sy;
-
-                    const flicker = 0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase);
-                    const alpha = flicker * (0.3 + s.depth * 0.6);
-                    const size = s.r * (0.8 + 0.2 * flicker);
-
-                    gx.beginPath();
-                    gx.arc(sx, sy, size, 0, TAU);
-                    gx.fillStyle = `hsla(${s.hue},${s.sat}%,${s.lum}%,${alpha})`;
-                    gx.fill();
-
-                    // Cross spikes on bright stars
-                    if (s.r > 2) {
-                        const spikeLen = s.r * 6 * flicker;
-                        const spikeA = alpha * 0.3;
-                        gx.strokeStyle = `hsla(${s.hue},${s.sat}%,${s.lum}%,${spikeA})`;
-                        gx.lineWidth = 0.5;
-                        gx.beginPath();
-                        gx.moveTo(sx - spikeLen, sy); gx.lineTo(sx + spikeLen, sy);
-                        gx.moveTo(sx, sy - spikeLen); gx.lineTo(sx, sy + spikeLen);
-                        gx.stroke();
-
-                        // Halo
-                        const hg = gx.createRadialGradient(sx, sy, 0, sx, sy, s.r * 5);
-                        hg.addColorStop(0, `hsla(${s.hue},${s.sat}%,${s.lum}%,${alpha * 0.2})`);
-                        hg.addColorStop(1, 'transparent');
-                        gx.fillStyle = hg;
-                        gx.beginPath();
-                        gx.arc(sx, sy, s.r * 5, 0, TAU);
-                        gx.fill();
-                    }
-                });
-            }
-
-            drawConstellations(t);
-
-            // === FX Layer ===
-            fx.clearRect(0, 0, w, h);
-
-            // Warp
-            if (warpActive) {
-                const wp = Math.min(1, (t - warpStart) / 1.2);
-                drawWarp(t, wp);
-                if (wp >= 1 && !warpDone) {
-                    warpDone = true;
-                    warpActive = false;
-                    triggerExplosion();
-                    setTimeout(showContent, 600);
-                }
-            }
-
-            // Explosion particles
-            expParticles = expParticles.filter(p => p.life > 0);
-            expParticles.forEach(p => { p.update(); p.draw(fx); });
-
-            // Cursor glow
-            const cg = document.getElementById('cursor-glow');
-            cg.style.left = smx + 'px';
-            cg.style.top = smy + 'px';
-
-            requestAnimationFrame(renderGalaxy);
-        }
-        renderGalaxy();
-
-        // ===================== COUNTDOWN =====================
-        const overlay = document.getElementById('countdown-overlay');
-        const cdNum = document.getElementById('cd-num');
-        const ringProg = document.getElementById('ring-progress');
-        const circumference = 2 * Math.PI * 116;
-        let count = 3;
-
-        function tickCountdown() {
-            cdNum.classList.remove('tick');
-            void cdNum.offsetWidth;
-            cdNum.classList.add('tick');
-
-            // Progress ring
-            const progress = (3 - count) / 3;
-            ringProg.style.strokeDashoffset = circumference * (1 - progress);
-
-            if (count > 0) {
-                cdNum.textContent = count;
-                count--;
-                setTimeout(tickCountdown, 1000);
-            } else {
-                // Complete ring
-                ringProg.style.strokeDashoffset = 0;
-                cdNum.textContent = '✦';
-                cdNum.style.fontSize = 'clamp(2rem, 6vw, 4rem)';
-                cdNum.style.color = 'rgba(120,180,255,0.8)';
-
-                setTimeout(() => {
-                    overlay.classList.add('gone');
-                    startWarp();
-                }, 400);
-            }
-        }
-
-        setTimeout(tickCountdown, 600);
-
-        // ===================== WARP SEQUENCE =====================
-        let warpStart = 0, warpDone = false;
-
-        function startWarp() {
-            initWarp();
-            warpActive = true;
-            warpStart = t;
-        }
-
-        // ===================== CONTENT REVEAL =====================
-        function showContent() {
-            const mc = document.getElementById('main-content');
-            mc.classList.add('on');
-
-            document.getElementById('tag').classList.add('in');
-            document.getElementById('title').classList.add('in');
-            document.getElementById('line').classList.add('in');
-
-            document.querySelectorAll('.msg').forEach(m => {
-                const d = parseInt(m.dataset.d) || 0;
-                setTimeout(() => m.classList.add('in'), d);
-            });
-
-            document.getElementById('end-mark').classList.add('in');
-
-            // Shooting stars at random intervals
-            setInterval(() => {
-                if (Math.random() < 0.3) spawnShootingStar();
-            }, 4000);
-        }
-
-        // ===================== SHOOTING STARS =====================
-        function spawnShootingStar() {
-            const sx = rand(0, w * 0.6);
-            const sy = rand(0, h * 0.3);
-            const angle = rand(0.3, 0.8);
-            const speed = rand(12, 22);
-            const len = rand(80, 200);
-            let life = 1;
-
-            const anim = () => {
-                if (life <= 0) return;
-                life -= 0.02;
-                const cx = sx + Math.cos(angle) * speed * (1 - life) * 60;
-                const cy = sy + Math.sin(angle) * speed * (1 - life) * 60;
-                const ex = cx - Math.cos(angle) * len * life;
-                const ey = cy - Math.sin(angle) * len * life;
-
-                const grad = gx.createLinearGradient(ex, ey, cx, cy);
-                grad.addColorStop(0, 'transparent');
-                grad.addColorStop(1, `rgba(200,220,255,${life * 0.7})`);
-                gx.strokeStyle = grad;
-                gx.lineWidth = 1;
-                gx.beginPath();
-                gx.moveTo(ex, ey);
-                gx.lineTo(cx, cy);
-                gx.stroke();
-
-                requestAnimationFrame(anim);
-            };
-            anim();
-        }
-
-    })();
-    </script>
+  <script src="script.js"></script>
 </body>
-
 </html>
