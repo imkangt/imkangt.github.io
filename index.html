@@ -1,283 +1,177 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="light">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="특별한 데이트 확인 페이지 💕 사랑하는 사람과의 만남을 확정하세요">
-  <title>💕 우리 만날까? - SOYOL</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이별의 편지 — A Letter of Farewell</title>
+    <meta name="description" content="A deeply emotional farewell letter, presented with melancholic beauty.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background Decoration -->
-  <div class="bg-decoration">
-    <div class="bg-blob"></div>
-    <div class="bg-blob"></div>
-    <div class="bg-blob"></div>
-  </div>
+    <!-- Ambient particles background -->
+    <canvas id="particles-canvas"></canvas>
 
-  <!-- Floating Hearts -->
-  <div class="floating-hearts"></div>
+    <!-- Scroll progress indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
-  <!-- Confetti Canvas -->
-  <canvas id="confetti-canvas"></canvas>
+    <!-- Main content -->
+    <main class="letter-container" id="letterContainer">
 
-  <!-- Progress Bar -->
-  <div class="progress-bar" style="width: 25%"></div>
-
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" id="theme-toggle" aria-label="테마 변경">
-    <span class="icon-sun">☀️</span>
-    <span class="icon-moon">🌙</span>
-  </button>
-
-  <!-- Toast -->
-  <div class="toast"></div>
-
-  <!-- Main Container -->
-  <div class="main-container">
-
-    <!-- ═══════════════════════════════════════
-         Section 1: The Question
-         ═══════════════════════════════════════ -->
-    <div class="section active" id="section-1">
-      <div class="card question-section">
-        <div class="couple-emoji">💑</div>
-        <h1 class="question-title">오빠를 만나고 싶어? 💕</h1>
-        <p class="question-subtitle">솔직하게 대답해줘~ 🥺</p>
-
-        <div class="cute-message">
-          너를 보고 싶어서 이 페이지를 만들었어... 💌
-        </div>
-
-        <div class="buttons-container" id="buttons-container">
-          <button class="btn btn-yes" id="btn-yes">응! 💖</button>
-          <button class="btn btn-no" id="btn-no">아니... 😢</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         Section 2: Date & Activity Selection
-         ═══════════════════════════════════════ -->
-    <div class="section" id="section-2">
-      <!-- Step Indicator -->
-      <div class="step-indicator">
-        <div class="step-dot active"></div>
-        <div class="step-dot"></div>
-        <div class="step-dot"></div>
-      </div>
-
-      <div class="card selection-card">
-        <div class="section-label">📅 STEP 1</div>
-        <h2 class="section-heading">언제 만날까? 🗓️</h2>
-
-        <div class="datetime-row">
-          <div class="form-group">
-            <label class="form-label" for="date-input">
-              📅 날짜
-            </label>
-            <input type="date" class="form-input" id="date-input">
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="time-input">
-              ⏰ 시간
-            </label>
-            <input type="time" class="form-input" id="time-input">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">🎯 뭐 하고 싶어?</label>
-          <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">여러 개 선택할 수 있어!</p>
-
-          <div class="activity-grid">
-            <div class="activity-chip" data-activity="olive-young">
-              <span class="chip-icon">🛍️</span>
-              <span>올리브영</span>
-              <span class="chip-check">✓</span>
+        <!-- Opening scene -->
+        <section class="scene scene--opening" data-scene="opening">
+            <div class="scene__inner">
+                <div class="opening-symbol">❦</div>
+                <p class="opening-text fade-text">스크롤을 내려주세요</p>
+                <div class="scroll-hint">
+                    <div class="scroll-hint__arrow"></div>
+                </div>
             </div>
-            <div class="activity-chip" data-activity="clothes">
-              <span class="chip-icon">👗</span>
-              <span>옷 쇼핑</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <!-- Letter sections -->
+        <section class="scene scene--letter" data-scene="1">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">나는 한때 너를 떠날 생각을 한 적이 있어.</p>
+                <p class="letter-line fade-text" data-delay="200">네가 좋지 않은 사람이어서도 아니고,</p>
+                <p class="letter-line fade-text" data-delay="400">내가 더 이상 너를 사랑하지 않아서도 아니야.</p>
+                <p class="letter-line fade-text accent" data-delay="700">그저 네 태도가 네 세상에서는<br>내가 있든 없든 아무 차이가 없는 사람처럼<br>느끼게 했을 뿐이야.</p>
             </div>
-            <div class="activity-chip" data-activity="food">
-              <span class="chip-icon">🍽️</span>
-              <span>맛있는 거 먹기</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <section class="scene scene--letter" data-scene="2">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">사실 나는 뻔뻔하게 계속 너를 붙잡을 수도 있었어.</p>
+                <p class="letter-line fade-text" data-delay="200">하지만 이제는 더 이상 의미가 없어.</p>
+                <p class="letter-line fade-text accent" data-delay="500">너와 함께 있을 때,<br>나는 더 이상 좋은 모습의 내가 아니기 때문이야.</p>
             </div>
-            <div class="activity-chip" data-activity="movie">
-              <span class="chip-icon">🎬</span>
-              <span>영화 보기</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <section class="scene scene--letter scene--emphasis" data-scene="3">
+            <div class="scene__inner">
+                <p class="letter-line fade-text emphasis-line" data-delay="0">나는 점점 약해지고,</p>
+                <p class="letter-line fade-text emphasis-line" data-delay="300">예민해지고,</p>
+                <p class="letter-line fade-text emphasis-line" data-delay="600">불안해졌어.</p>
             </div>
-            <div class="activity-chip" data-activity="cafe">
-              <span class="chip-icon">☕</span>
-              <span>카페 가기</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <section class="scene scene--letter" data-scene="4">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">너는 늘 내 안의 가장 나쁜 모습들을 끌어냈어.</p>
+                <p class="letter-line fade-text accent" data-delay="300">함께 있으면서 계속 서로에게 상처를 줄 바에는,<br>차라리 여기서 멈추는 게 나아.</p>
             </div>
-            <div class="activity-chip" data-activity="walk">
-              <span class="chip-icon">🚶‍♀️</span>
-              <span>산책하기</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <section class="scene scene--letter" data-scene="5">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">내가 품었던 기대들은 조금씩 허공 속으로 사라졌어.</p>
+                <p class="letter-line fade-text" data-delay="200">그러다 보니 나도 점점 아무것도 바라지 않게 됐어.</p>
+                <p class="letter-line fade-text" data-delay="400">너무 많이 되풀이했던 말들도<br>이제는 더 이상 하고 싶지 않아.</p>
             </div>
-            <div class="activity-chip" data-activity="karaoke">
-              <span class="chip-icon">🎤</span>
-              <span>노래방</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <section class="scene scene--letter" data-scene="6">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">미안하다는 말도 너무 많이 반복하면<br>결국 아무 의미가 없어져.</p>
+                <p class="letter-line fade-text accent" data-delay="400">네가 내가 느꼈던 서러움을<br>한 번도 제대로 이해하지 못했다는 걸 깨달았을 때,</p>
+                <p class="letter-line fade-text" data-delay="700">나도 더 이상 아무것도 설명하고 싶지 않았어.</p>
             </div>
-            <div class="activity-chip" data-activity="photo">
-              <span class="chip-icon">📸</span>
-              <span>사진 찍기</span>
-              <span class="chip-check">✓</span>
+        </section>
+
+        <section class="scene scene--letter" data-scene="7">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">마음속에는 수많은 억울함과 서운함이 차올랐어.</p>
+                <p class="letter-line fade-text" data-delay="300">하지만 막상 그 말들이 입가까지 올라오면……</p>
+                <p class="letter-line fade-text accent" data-delay="600">굳이 꺼내 말할 가치조차 없다는 생각이 들었어.</p>
             </div>
-          </div>
-        </div>
+        </section>
 
-        <div class="nav-buttons">
-          <button class="btn-nav btn-next" id="btn-next-2" disabled onclick="goToSection(3)">
-            다음으로 ➜
-          </button>
-        </div>
-      </div>
-    </div>
+        <section class="scene scene--letter" data-scene="8">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">나는 너의 잘못을 들춰내거나 너를 폭로하지 않을 거야.</p>
+                <p class="letter-line fade-text" data-delay="200">하지만 너에게서 멀어질 거야.</p>
+                <p class="letter-line fade-text accent" data-delay="500">조용히 너를 내 인생에서 지워낼 거야.</p>
+            </div>
+        </section>
 
-    <!-- ═══════════════════════════════════════
-         Section 3: Message
-         ═══════════════════════════════════════ -->
-    <div class="section" id="section-3">
-      <!-- Step Indicator -->
-      <div class="step-indicator">
-        <div class="step-dot done"></div>
-        <div class="step-dot active"></div>
-        <div class="step-dot"></div>
-      </div>
+        <section class="scene scene--letter" data-scene="9">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">나는 그저 내 선택을 할 뿐이야.</p>
+                <p class="letter-line fade-text" data-delay="200">내가 너에게 다른 사람을 어떻게 대해야 하는지<br>가르쳐 줄 의무는 없어.</p>
+                <p class="letter-line fade-text" data-delay="500">너에게는 너만의 입장이 있고,<br>나에게도 나만의 한계가 있어.</p>
+            </div>
+        </section>
 
-      <div class="card">
-        <div class="section-label">💌 STEP 2</div>
-        <h2 class="section-heading">하고 싶은 말 있어? 💬</h2>
+        <section class="scene scene--letter scene--emphasis" data-scene="10">
+            <div class="scene__inner">
+                <p class="letter-line fade-text emphasis-line" data-delay="0">누군가를 사랑하기 위해</p>
+                <p class="letter-line fade-text emphasis-line" data-delay="400">나 자신을 잃는 건</p>
+                <p class="letter-line fade-text emphasis-line" data-delay="800">정말 아무 의미가 없어.</p>
+            </div>
+        </section>
 
-        <div class="cute-message">
-          자유롭게 적어줘~ 뭐든 좋아! 😊
-        </div>
+        <section class="scene scene--letter" data-scene="11">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">나는 쉽게 마음을 열지 못하고,</p>
+                <p class="letter-line fade-text" data-delay="200">정이 많고,</p>
+                <p class="letter-line fade-text" data-delay="300">설명하는 걸 좋아하지 않으면서도</p>
+                <p class="letter-line fade-text" data-delay="500">너무 쉽게 마음이 약해지는 사람이야.</p>
+            </div>
+        </section>
 
-        <div class="form-group">
-          <textarea
-            class="message-textarea"
-            id="message-input"
-            placeholder="예: 오빠 빨리 만나고 싶어~ 💕&#10;맛있는 거 사줘! 🍕"
-            maxlength="500"
-          ></textarea>
-          <div class="char-count">0 / 500</div>
-        </div>
+        <section class="scene scene--letter" data-scene="12">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">그렇게 많은 상처와 손해를 감수하고도<br>계속 사람을 믿었어.</p>
+                <p class="letter-line fade-text accent" data-delay="400">그러면서도 끝내 교훈을 얻지 못했어.</p>
+            </div>
+        </section>
 
-        <div class="nav-buttons">
-          <button class="btn-nav btn-back" onclick="goToSection(2)">
-            ← 이전
-          </button>
-          <button class="btn-nav btn-next" onclick="goToSummary()">
-            확인하기 ✨
-          </button>
-        </div>
-      </div>
-    </div>
+        <section class="scene scene--letter" data-scene="13">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">하지만 이번에는 내가 떠나는 것을 선택했어.</p>
+                <p class="letter-line fade-text" data-delay="300">더 이상 의미가 없어진 것들 속에<br>계속 갇혀 있고 싶지 않아.</p>
+                <p class="letter-line fade-text accent" data-delay="600">손을 내밀어 달라고 해야 겨우 받을 수 있는 사탕과,<br>상대가 먼저 건네주는 사탕은……<br>완전히 다른 거야.</p>
+            </div>
+        </section>
 
-    <!-- ═══════════════════════════════════════
-         Section 4: Summary & Send
-         ═══════════════════════════════════════ -->
-    <div class="section" id="section-4">
-      <!-- Step Indicator -->
-      <div class="step-indicator">
-        <div class="step-dot done"></div>
-        <div class="step-dot done"></div>
-        <div class="step-dot active"></div>
-      </div>
+        <section class="scene scene--letter" data-scene="14">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">나는 늘 아주 신중하게 생각했어.</p>
+                <p class="letter-line fade-text" data-delay="200">이 관계를 계속 이어가야 하는지<br>스스로에게 몇 번이고 되물었어.</p>
+                <p class="letter-line fade-text" data-delay="500">사실 나는 너를 만난 것을<br>단 한 번도 후회한 적이 없어.</p>
+            </div>
+        </section>
 
-      <div class="card summary-card">
-        <div class="section-label">📋 확인</div>
-        <h2 class="section-heading">이렇게 보낼까? 💕</h2>
+        <section class="scene scene--letter scene--emphasis" data-scene="15">
+            <div class="scene__inner">
+                <p class="letter-line fade-text emphasis-line" data-delay="0">다만 아쉬운 건,</p>
+                <p class="letter-line fade-text emphasis-line" data-delay="500">결국 우리는</p>
+                <p class="letter-line fade-text emphasis-line" data-delay="1000">그 산을 넘지 못했다는 거야.</p>
+            </div>
+        </section>
 
-        <div class="summary-item">
-          <span class="summary-icon">📅</span>
-          <div class="summary-content">
-            <div class="summary-label">날짜</div>
-            <div class="summary-value" id="summary-date">-</div>
-          </div>
-        </div>
+        <section class="scene scene--letter" data-scene="16">
+            <div class="scene__inner">
+                <p class="letter-line fade-text" data-delay="0">아주 평범한 어느 날,</p>
+                <p class="letter-line fade-text" data-delay="300">나는 한때 너무나 소중했던 사람을 놓아주었어.</p>
+                <p class="letter-line fade-text" data-delay="600">아직 조금은 미련이 남아 있지만,</p>
+                <p class="letter-line fade-text accent" data-delay="900">내 마음은 오히려 홀가분해졌어.</p>
+            </div>
+        </section>
 
-        <div class="summary-item">
-          <span class="summary-icon">⏰</span>
-          <div class="summary-content">
-            <div class="summary-label">시간</div>
-            <div class="summary-value" id="summary-time">-</div>
-          </div>
-        </div>
+        <!-- Closing scene -->
+        <section class="scene scene--closing" data-scene="closing">
+            <div class="scene__inner">
+                <p class="closing-text fade-text" data-delay="0">이제는 끝맺을 때가 됐어.</p>
+                <div class="closing-symbol fade-text" data-delay="800">— ✦ —</div>
+            </div>
+        </section>
 
-        <div class="summary-item">
-          <span class="summary-icon">🎯</span>
-          <div class="summary-content">
-            <div class="summary-label">하고 싶은 것</div>
-            <div class="summary-activities" id="summary-activities"></div>
-          </div>
-        </div>
+    </main>
 
-        <div class="summary-item">
-          <span class="summary-icon">💌</span>
-          <div class="summary-content">
-            <div class="summary-label">메시지</div>
-            <div class="summary-value" id="summary-message">-</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Send Options -->
-      <div class="send-options">
-        <button class="btn-send btn-email" onclick="sendEmail()">
-          <span class="send-icon">📧</span>
-          이메일로 보내기
-        </button>
-        <button class="btn-send btn-sms" onclick="sendSMS()">
-          <span class="send-icon">💬</span>
-          문자로 보내기
-        </button>
-        <button class="btn-send btn-kakao" onclick="sendKakao()">
-          <span class="send-icon">💛</span>
-          카카오톡으로 공유
-        </button>
-        <button class="btn-send btn-share" onclick="shareGeneral()">
-          <span class="send-icon">📤</span>
-          다른 앱으로 공유
-        </button>
-      </div>
-
-      <div class="nav-buttons" style="margin-top: 12px;">
-        <button class="btn-nav btn-back" onclick="goToSection(3)">
-          ← 수정하기
-        </button>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         Section 5: Success
-         ═══════════════════════════════════════ -->
-    <div class="section" id="section-5">
-      <div class="card success-section">
-        <div class="success-emoji">🎉</div>
-        <h2 class="success-title">전송 완료! 💕</h2>
-        <p class="success-subtitle">
-          고마워~ 빨리 만나자! 🥰<br>
-          기대하고 있을게~ 💖
-        </p>
-        <button class="btn-restart" onclick="restartApp()">
-          처음으로 돌아가기 🔄
-        </button>
-      </div>
-    </div>
-
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
